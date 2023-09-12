@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import "./navbar.css";
 import { NavLink, useLocation } from "react-router-dom";
 import { navLinks } from "../../constants";
@@ -11,15 +11,36 @@ import { logo, userIcon } from "../../assets/images";
 
 const Navbar = () => {
   const location = useLocation();
+  const headerRef = useRef(null);
+
+  const stickyHeaderFunc = () => {
+    window.addEventListener("scroll", () => {
+      if (
+        document.body.scrollTop > 80 ||
+        document.documentElement.scrollTop > 80
+      ) {
+        headerRef.current.classList.add("sticky__nav");
+      } else {
+        headerRef.current.classList.remove("sticky__nav");
+      }
+    });
+  };
+
+  useEffect(() => {
+    stickyHeaderFunc();
+
+    return () => window.removeEventListener("scroll", stickyHeaderFunc);
+  }, []);
+
   return (
-    <header className="header">
+    <header className="header" ref={headerRef}>
       <Container>
         <Row>
           <div className="nav__wrapper">
             <div className="logo">
               <img src={logo} alt="logo" />
               <div>
-                <h1>Thee Big</h1>
+                <h1>T H E E B I G</h1>
               </div>
             </div>
 
