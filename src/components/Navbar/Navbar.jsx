@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import "./navbar.css";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { navLinks } from "../../constants";
+import { useSelector } from "react-redux";
 
 import { motion } from "framer-motion";
 
@@ -10,8 +11,9 @@ import { Container, Row } from "reactstrap";
 import { logo, userIcon } from "../../assets/images";
 
 const Navbar = () => {
-  const location = useLocation();
   const headerRef = useRef(null);
+  const menuRef = useRef(null);
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
   const stickyHeaderFunc = () => {
     window.addEventListener("scroll", () => {
@@ -32,6 +34,10 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", stickyHeaderFunc);
   }, []);
 
+  const menuToggle = () => {
+    menuRef.current.classList.toggle("active__menu");
+  };
+
   return (
     <header className="header" ref={headerRef}>
       <Container>
@@ -44,7 +50,7 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div className="navigation">
+            <div className="navigation" ref={menuRef} onClick={menuToggle}>
               <ul className="menu">
                 {navLinks.map((link) => (
                   <motion.li
@@ -72,7 +78,7 @@ const Navbar = () => {
               </span>
               <span className="cart__icon">
                 <i className="ri-shopping-bag-line"></i>
-                <span className="badge">1</span>
+                <span className="badge">{totalQuantity}</span>
               </span>
 
               <span>
@@ -82,12 +88,11 @@ const Navbar = () => {
                   alt="user-icon"
                 />
               </span>
-            </div>
-
-            <div className="mobile__menu">
-              <span>
-                <i className="ri-menu-line"></i>
-              </span>
+              <div className="mobile__menu">
+                <span onClick={menuToggle}>
+                  <i className="ri-menu-line"></i>
+                </span>
+              </div>
             </div>
           </div>
         </Row>
