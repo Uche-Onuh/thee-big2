@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import "../styles/cart.css";
+import Helmet from "../components/Helmet/Helmet";
+import CommonSection from "../components/UI/CommonSection";
 
 const Cart = () => {
   return (
-    <div>Cart</div>
-  )
-}
+    <Helmet title={Cart}>
+      <CommonSection title={"Shopping Cart"} />
+    </Helmet>
+  );
+};
 
-export default Cart
+export default Cart;
