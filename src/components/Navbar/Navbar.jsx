@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import "./navbar.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { navLinks } from "../../constants";
 import { useSelector } from "react-redux";
 
@@ -13,6 +13,7 @@ import { logo, userIcon } from "../../assets/images";
 const Navbar = () => {
   const headerRef = useRef(null);
   const menuRef = useRef(null);
+  const navigate = useNavigate();
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
   const stickyHeaderFunc = () => {
@@ -76,7 +77,12 @@ const Navbar = () => {
                 <i className="ri-heart-line"></i>
                 <span className="badge">1</span>
               </span>
-              <span className="cart__icon">
+              <span
+                className="cart__icon"
+                onClick={() => {
+                  navigate("/cart");
+                }}
+              >
                 <i className="ri-shopping-bag-line"></i>
                 <span className="badge">{totalQuantity}</span>
               </span>
