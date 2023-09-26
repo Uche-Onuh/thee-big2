@@ -1,9 +1,82 @@
-import React from 'react'
+import React from "react";
+import { Container, Row, Col, Form, FormGroup } from "reactstrap";
+import Helmet from "../components/Helmet/Helmet";
+import CommonSection from "../components/UI/CommonSection";
+
+import "../styles/checkout.css";
+import { useSelector } from "react-redux";
 
 const Checkout = () => {
+  const totalQty = useSelector((state) => state.cart.totalQuantity);
+  const totalAmount = useSelector((state) => state.cart.totalAmount);
   return (
-    <div>Checkout</div>
-  )
-}
+    <Helmet>
+      <CommonSection title="Checkout" />
+      <section>
+        <Container>
+          <Row>
+            <Col lg="8">
+              <h6 className="mb-4 fw-bold">Billing Information</h6>
+              <Form className="billing__form">
+                <FormGroup className="form__group">
+                  <input type="text" placeholder="Enter your name" />
+                </FormGroup>
 
-export default Checkout
+                <FormGroup className="form__group">
+                  <input type="email" placeholder="Enter your email" />
+                </FormGroup>
+
+                <FormGroup className="form__group">
+                  <input type="number" placeholder="Phone number" />
+                </FormGroup>
+
+                <FormGroup className="form__group">
+                  <input type="text" placeholder="Street address" />
+                </FormGroup>
+
+                <FormGroup className="form__group">
+                  <input type="text" placeholder="City" />
+                </FormGroup>
+
+                <FormGroup className="form__group">
+                  <input type="text" placeholder="Postal Code" />
+                </FormGroup>
+
+                <FormGroup className="form__group">
+                  <input type="text" placeholder="State" />
+                </FormGroup>
+              </Form>
+            </Col>
+
+            <Col lg="4">
+              <div className="checkout__cart">
+                <h6>
+                  Total Qty : <span>{totalQty} items</span>
+                </h6>
+                <h6>
+                  Subtotal : <span>NGN {totalAmount}</span>
+                </h6>
+                <h6>
+                  <span>
+                    Shipping : <br />
+                    free shipping
+                  </span>
+                  <span>NGN 0</span>
+                </h6>
+                <h6></h6>
+                <h4>
+                  Total Cost : <span>NGN {totalAmount}</span>
+                </h4>
+                <button className="shop__btn order__btn auth__btn w-100">
+                  Place Order
+                </button>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+    </Helmet>
+  );
+};
+
+export default Checkout;

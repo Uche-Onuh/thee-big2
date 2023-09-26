@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/cart.css";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
@@ -13,17 +13,21 @@ const Cart = () => {
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Helmet title={"Cart"}>
       <CommonSection title={"Shopping Cart"} />
       <section>
         <Container>
           <Row>
-            <Col lg="9">
+            <Col lg="9" className="scroll">
               {cartItems.length === 0 ? (
                 <h2>No items in your cart</h2>
               ) : (
-                <table className="table bordered">
+                <table className="table bordered" sx={{overflowX: "scroll"}}>
                   <thead>
                     <tr>
                       <th>Image</th>

@@ -6,9 +6,15 @@ const initialState = {
   totalQuantity: 0,
 };
 
+// Function to load cart state from local storage
+const loadCartFromLocalStorage = () => {
+  const storedCart = localStorage.getItem("cart");
+  return storedCart ? JSON.parse(storedCart) : initialState;
+};
+
 const cartSlice = createSlice({
   name: "cart",
-  initialState,
+  initialState: loadCartFromLocalStorage(),
   reducers: {
     addItem: (state, action) => {
       const newItem = action.payload;
@@ -37,6 +43,15 @@ const cartSlice = createSlice({
         (total, item) => total + Number(item.price) * Number(item.quantity),
         0
       );
+
+      // Update the subtotal
+      state.totalAmount = state.cartItems.reduce(
+        (total, item) => total + Number(item.price) * Number(item.quantity),
+        0
+      );
+
+      // Update local storage
+      localStorage.setItem("cart", JSON.stringify(state));
     },
 
     deleteItem: (state, action) => {
@@ -46,6 +61,15 @@ const cartSlice = createSlice({
       if (existingItem) {
         state.cartItems = state.cartItems.filter((item) => item.id !== id);
         state.totalQuantity = state.totalQuantity - existingItem.quantity;
+
+        // Update the subtotal
+        state.totalAmount = state.cartItems.reduce(
+          (total, item) => total + Number(item.price) * Number(item.quantity),
+          0
+        );
+
+        // Update local storage
+        localStorage.setItem("cart", JSON.stringify(state));
       }
 
       state.totalAmount = state.cartItems.reduce(
