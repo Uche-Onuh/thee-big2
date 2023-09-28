@@ -3,18 +3,24 @@ import "./navbar.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { navLinks } from "../../constants";
 import { useSelector } from "react-redux";
+import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 import { motion } from "framer-motion";
 
 import { Container, Row } from "reactstrap";
 
 import { logo, userIcon } from "../../assets/images";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase.config";
 
 const Navbar = () => {
   const headerRef = useRef(null);
   const menuRef = useRef(null);
   const navigate = useNavigate();
+  const currentUser = useAuth();
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const profileActionRef = useRef(null);
 
   const stickyHeaderFunc = () => {
     window.addEventListener("scroll", () => {
@@ -29,6 +35,17 @@ const Navbar = () => {
     });
   };
 
+  const logout = () => {
+    signOut(auth)
+      .then(() => {
+        toast.success("Logged out");
+        navigate("/");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
+
   useEffect(() => {
     stickyHeaderFunc();
 
@@ -37,6 +54,14 @@ const Navbar = () => {
 
   const menuToggle = () => {
     menuRef.current.classList.toggle("active__menu");
+  };
+
+  const toggleProfileAction = () => {
+    if (profileActionRef.current.style.display === "block") {
+      profileActionRef.current.style.display = "none";
+    } else {
+      profileActionRef.current.style.display = "block";
+    }
   };
 
   return (
@@ -73,10 +98,10 @@ const Navbar = () => {
             </div>
 
             <div className="nav__icons">
-              <span className="fav__icon">
+              {/* <span className="fav__icon">
                 <i className="ri-heart-line"></i>
                 <span className="badge">1</span>
-              </span>
+              </span> */}
               <span
                 className="cart__icon"
                 onClick={() => {
@@ -87,13 +112,28 @@ const Navbar = () => {
                 <span className="badge">{totalQuantity}</span>
               </span>
 
-              <span>
+              <div className="profile">
                 <motion.img
                   whileTap={{ scale: 1.2 }}
-                  src={userIcon}
+                  src={currentUser ? currentUser.photoURL : userIcon}
                   alt="user-icon"
+                  onClick={toggleProfileAction}
                 />
-              </span>
+                <div
+                  className="profile__actions"
+                  ref={profileActionRef}
+                  onClick={toggleProfileAction}
+                >
+                  {currentUser ? (
+                    <span onClick={logout}>Log out</span>
+                  ) : (
+                    <div className="profile__actions-button">
+                      <Link to="/signup">Create Account</Link>
+                      <Link to="/login">Login</Link>
+                    </div>
+                  )}
+                </div>
+              </div>
               <div className="mobile__menu">
                 <span onClick={menuToggle}>
                   <i className="ri-menu-line"></i>

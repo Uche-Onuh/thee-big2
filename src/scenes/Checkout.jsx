@@ -54,7 +54,8 @@ const Checkout = () => {
                   Total Qty : <span>{totalQty} items</span>
                 </h6>
                 <h6>
-                  Subtotal : <span>NGN {totalAmount}</span>
+                  Subtotal :
+                  <span>NGN {Intl.NumberFormat().format(totalAmount)}</span>
                 </h6>
                 <h6>
                   <span>
@@ -65,7 +66,8 @@ const Checkout = () => {
                 </h6>
                 <h6></h6>
                 <h4>
-                  Total Cost : <span>NGN {totalAmount}</span>
+                  Total Cost :{" "}
+                  <span>NGN {Intl.NumberFormat().format(totalAmount)}</span>
                 </h4>
                 <button className="shop__btn order__btn auth__btn w-100">
                   Place Order

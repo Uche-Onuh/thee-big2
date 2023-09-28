@@ -27,7 +27,7 @@ const Cart = () => {
               {cartItems.length === 0 ? (
                 <h2>No items in your cart</h2>
               ) : (
-                <table className="table bordered" sx={{overflowX: "scroll"}}>
+                <table className="table bordered" sx={{ overflowX: "scroll" }}>
                   <thead>
                     <tr>
                       <th>Image</th>
@@ -51,7 +51,9 @@ const Cart = () => {
               <div>
                 <h6 className="d-flex align-items-center gap-5">
                   Subtotal:
-                  <span className="fs-4 fw-bold">NGN {totalAmount}</span>
+                  <span className="fs-4 fw-bold">
+                    NGN {Intl.NumberFormat().format(totalAmount)}
+                  </span>
                 </h6>
               </div>
               <p className="fs-6 mt-2">
@@ -61,6 +63,7 @@ const Cart = () => {
                 <button
                   className="shop__btn w-100 "
                   onClick={() => navigate("/checkout")}
+                  disabled={totalAmount === 0 ? true : false}
                 >
                   Checkout
                 </button>

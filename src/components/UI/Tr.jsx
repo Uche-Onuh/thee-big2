@@ -10,14 +10,35 @@ const Tr = ({ item }) => {
   const deleteProduct = () => {
     dispatch(cartActions.deleteItem(item.id));
   };
+
+  const increaseProduct = () => {
+    dispatch(cartActions.increaseItem(item.id));
+  };
+
+  const decreaseProduct = () => {
+    dispatch(cartActions.decreaseItem(item.id));
+  };
+
   return (
     <tr>
       <td>
         <img src={item.image} alt={item.productName} />
       </td>
       <td>{item.productName}</td>
-      <td>NGN {item.price}</td>
-      <td>{item.quantity}px</td>
+      <td>NGN {Intl.NumberFormat().format(item.price)}</td>
+      <td>
+        <div className="inline align-items-center gap-2">
+          {item.quantity}px
+          <span>
+            <div className="cart__button increment">
+              <button onClick={increaseProduct}> + </button>
+            </div>
+            <div className="cart__button decrement">
+              <button onClick={decreaseProduct}> - </button>
+            </div>
+          </span>
+        </div>
+      </td>
       <td>
         <motion.i
           className="ri-delete-bin-line"

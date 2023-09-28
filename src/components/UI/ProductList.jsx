@@ -10,7 +10,7 @@ const ProductList = ({ data }) => {
           name={item.productName}
           id={item.id}
           category={item.category}
-          price={item.price}
+          price={Intl.NumberFormat().format(item.price)}
           img={item.imgUrl}
         />
       ))}

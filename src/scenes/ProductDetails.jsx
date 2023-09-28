@@ -107,7 +107,9 @@ const ProductDetails = () => {
                 </div>
 
                 <div className="d-flex align-items-center gap-5">
-                  <span className="product__price">NGN {price}</span>
+                  <span className="product__price">
+                    NGN {Intl.NumberFormat().format(price)}
+                  </span>
                   <span>Category: {category.toUpperCase()}</span>
                 </div>
                 <p className="mt-3">{shortDesc}</p>
