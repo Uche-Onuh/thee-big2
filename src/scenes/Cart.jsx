@@ -23,7 +23,7 @@ const Cart = () => {
       <section>
         <Container>
           <Row>
-            <Col lg="9" className="scroll">
+            <Col lg="9" className="cart__scroll">
               {cartItems.length === 0 ? (
                 <h2>No items in your cart</h2>
               ) : (

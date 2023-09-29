@@ -7,6 +7,7 @@ import { userIcon } from "../assets/images";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { setDoc, doc } from "firebase/firestore";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 import { auth } from "../firebase.config";
 import { storage } from "../firebase.config";
@@ -66,7 +67,7 @@ const SignUp = () => {
               uid: user.uid,
               displayName: userName,
               email,
-              permisions: "user",
+              permissions: 1,
               photoURL: downloadURL,
             });
           });
@@ -87,8 +88,8 @@ const SignUp = () => {
         <Container>
           <Row>
             {loading ? (
-              <Col lg="12" className="text-center loading">
-                <h5>Loading...</h5>
+              <Col lg="12" className="text-center ">
+                <LoadingSpinner />
               </Col>
             ) : (
               <Col lg="6" className="m-auto text-center">
@@ -100,6 +101,7 @@ const SignUp = () => {
                       type="text"
                       placeholder="Enter your user name"
                       value={userName}
+                      required
                       onChange={(e) => setUserName(e.target.value)}
                     />
                   </FormGroup>
@@ -108,6 +110,7 @@ const SignUp = () => {
                       type="email"
                       placeholder="Enter your email address"
                       value={email}
+                      required
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </FormGroup>
@@ -116,6 +119,7 @@ const SignUp = () => {
                       type="password"
                       placeholder="Enter your password"
                       value={password}
+                      required
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </FormGroup>
@@ -124,6 +128,7 @@ const SignUp = () => {
                       type="password"
                       placeholder="Confirm Password"
                       value={passwordConf}
+                      required
                       onChange={(e) => setPasswordConf(e.target.value)}
                     />
                   </FormGroup>
@@ -163,7 +168,7 @@ const SignUp = () => {
                     Create Account
                   </button>
                   <p>
-                    Have an accout? <Link to="/login">Login</Link>
+                    Have an account? <Link to="/login">Login</Link>
                   </p>
                 </Form>
               </Col>

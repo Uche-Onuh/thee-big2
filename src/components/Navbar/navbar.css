@@ -102,6 +102,10 @@
   align-items: start;
 }
 
+.show__profileActions{
+  display: block !important;
+}
+
 .mobile__menu {
   font-size: 1.3rem;
   color: var(--primary-color);
@@ -128,6 +132,12 @@
   z-index: 1000;
   box-shadow: 3px 3px 8px -3px #ddd;
   background: #fff;
+}
+
+@media screen and (max-width: 1440px) {
+  .nav__icons .profile .profile__actions {
+    left: -600%;
+  }
 }
 
 @media screen and (max-width: 768px) {

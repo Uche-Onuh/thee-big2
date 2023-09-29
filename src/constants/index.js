@@ -10,9 +10,9 @@ export const navLinks = [
     display: "Shop",
   },
   {
-    id: "cart",
-    path: "cart",
-    display: "Cart",
+    id: "contact",
+    path: "contact",
+    display: "Contact Us",
   },
 ];
 

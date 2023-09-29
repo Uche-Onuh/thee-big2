@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import CommonSection from "../components/UI/CommonSection";
 import Helmet from "../components/Helmet/Helmet";
 import { Container, Row, Col } from "reactstrap";
@@ -20,6 +20,22 @@ const Shop = () => {
 
       setProductsData(filteredProducts);
     }
+  };
+
+  const handleSort = (e) => {
+    const sortValue = e.target.value;
+
+    let sortedProducts;
+
+    if (sortValue === "ascending") {
+      sortedProducts = [...products].sort((a, b) => a.price - b.price);
+    } else if (sortValue === "descending") {
+      sortedProducts = [...products].sort((a, b) => b.price - a.price);
+    } else {
+      sortedProducts = [...products];
+    }
+
+    setProductsData(sortedProducts);
   };
 
   const handleSearch = (e) => {
@@ -55,7 +71,7 @@ const Shop = () => {
             </Col>
             <Col lg="3" md="6" className="text-end">
               <div className="filter__widget">
-                <select>
+                <select onChange={handleSort}>
                   <option>Sort by </option>
                   <option value="ascending">Ascending</option>
                   <option value="descending">Descending</option>

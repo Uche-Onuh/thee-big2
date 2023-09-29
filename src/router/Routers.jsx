@@ -10,8 +10,11 @@ import {
   ProductDetails,
   Shop,
   SignUp,
+  Contact,
 } from "../scenes";
 import ProtectedRoute from "./ProtectedRoute";
+
+import { AdminNav, AllProducts, AddProducts, Dashboard } from "../admin";
 
 const Routers = () => {
   return (
@@ -20,10 +23,11 @@ const Routers = () => {
       <Route path="shop/:id" element={<ProductDetails />} />
       <Route path="shop" element={<Shop />} />
       <Route path="cart" element={<Cart />} />
+      <Route path="contact" element={<Contact />} />
       <Route
         path="checkout"
         element={
-          <ProtectedRoute>  
+          <ProtectedRoute>
             <Checkout />
           </ProtectedRoute>
         }

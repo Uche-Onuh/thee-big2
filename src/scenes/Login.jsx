@@ -6,6 +6,7 @@ import "../styles/login.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase.config";
 import { toast } from "react-toastify";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -26,7 +27,7 @@ const Login = () => {
 
       const user = userCredential.user;
 
-      console.log(user);
+      console.log(userCredential);
       setLoading(false);
       toast.success("Succesfully logged in");
       navigate("/");
@@ -42,8 +43,8 @@ const Login = () => {
         <Container>
           <Row>
             {loading ? (
-              <Col lg="12" className="text-center loading">
-                <h5>Loading...</h5>
+              <Col lg="12" className="text-center">
+                <LoadingSpinner />
               </Col>
             ) : (
               <Col lg="6" className="m-auto text-center">
@@ -55,6 +56,7 @@ const Login = () => {
                       type="email"
                       placeholder="Enter your email address"
                       value={email}
+                      required
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </FormGroup>
@@ -63,6 +65,7 @@ const Login = () => {
                       type="password"
                       placeholder="Enter your password"
                       value={password}
+                      required
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </FormGroup>

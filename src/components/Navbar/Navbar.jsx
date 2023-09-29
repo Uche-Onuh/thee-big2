@@ -57,11 +57,7 @@ const Navbar = () => {
   };
 
   const toggleProfileAction = () => {
-    if (profileActionRef.current.style.display === "block") {
-      profileActionRef.current.style.display = "none";
-    } else {
-      profileActionRef.current.style.display = "block";
-    }
+    profileActionRef.current.classList.toggle("show__profileActions");
   };
 
   return (
@@ -116,7 +112,6 @@ const Navbar = () => {
                 <motion.img
                   whileTap={{ scale: 1.2 }}
                   src={currentUser ? currentUser.photoURL : userIcon}
-                  alt="user-icon"
                   onClick={toggleProfileAction}
                 />
                 <div

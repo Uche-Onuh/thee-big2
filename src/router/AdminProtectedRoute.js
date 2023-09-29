@@ -1,19 +1,18 @@
 import { useEffect } from "react";
 import useAuth from "../hooks/useAuth";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = () => {
   const currentUser = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!currentUser) {
+    if (!currentUser ) {
       navigate("/login");
     }
   }, [currentUser, navigate]);
-  console.log(currentUser);
 
-  return currentUser ? children : null;
+  return currentUser ? <Outlet /> : null;
 };
 
 export default ProtectedRoute;
