@@ -13,6 +13,7 @@ import { Container, Row } from "reactstrap";
 import { logo, userIcon } from "../../assets/images";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase.config";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const headerRef = useRef(null);

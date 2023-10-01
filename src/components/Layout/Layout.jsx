@@ -3,11 +3,15 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import Routers from "../../router/routers";
 
+import { AdminNav } from "../../admin";
+import { useLocation } from "react-router-dom";
+
 const Layout = () => {
+  const location = useLocation();
   return (
     <>
       <nav>
-        <Navbar />
+        {location.pathname.startsWith("/admin") ? <AdminNav /> : <Navbar />}
       </nav>
       <div>
         <Routers />

@@ -42,3 +42,22 @@ export const serviceData = [
     bg: "#d6e5fb",
   },
 ];
+
+export const adminNav = [
+  {
+    display: "Dashboard",
+    path: "/admin",
+  },
+  {
+    display: "All-Products",
+    path: "/admin/all-products",
+  },
+  {
+    display: "Orders",
+    path: "/admin/orders",
+  },
+  {
+    display: "Users",
+    path: "/admin/users",
+  },
+];
