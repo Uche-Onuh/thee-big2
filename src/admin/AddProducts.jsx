@@ -71,7 +71,7 @@ const AddProducts = () => {
             ) : (
               <Form onSubmit={addProduct}>
                 <div className="mb-4">
-                  <FormGroup className="form__group">
+                  <FormGroup className="form__group form__unset">
                     <span>Product title</span>
                     <input
                       type="text"
@@ -83,7 +83,7 @@ const AddProducts = () => {
                   </FormGroup>
                 </div>
                 <div className="mb-4">
-                  <FormGroup className="form__group">
+                  <FormGroup className="form__group form__unset">
                     <span>Short Description</span>
                     <input
                       type="text"
@@ -96,7 +96,7 @@ const AddProducts = () => {
                 </div>
 
                 <div className="mb-4">
-                  <FormGroup className="form__group">
+                  <FormGroup className="form__group form__unset">
                     <span>Description</span>
                     <input
                       type="text"
@@ -109,7 +109,7 @@ const AddProducts = () => {
                 </div>
 
                 <div className="d-flex align-items-center justify-content-between gap-5">
-                  <FormGroup className="form__group w-50">
+                  <FormGroup className="form__group w-50 form__unset">
                     <span>Price(NGN)</span>
                     <input
                       type="number"
@@ -119,7 +119,7 @@ const AddProducts = () => {
                       required
                     />
                   </FormGroup>
-                  <FormGroup className="form__group w-50">
+                  <FormGroup className="form__group w-50 form__unset">
                     <span>Category</span>
                     <br />
                     <select
@@ -137,7 +137,7 @@ const AddProducts = () => {
                   </FormGroup>
                 </div>
                 <div>
-                  <FormGroup className="form__group">
+                  <FormGroup className="form__group form__unset">
                     <span>Product Image</span>
                     <input
                       type="file"

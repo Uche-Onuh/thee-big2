@@ -1,3 +1,7 @@
+.form__group {
+  display: flex;
+}
+
 .auth__form {
   background: var(--primary-color);
   padding: 40px;
@@ -53,4 +57,3 @@
   color: #747bff;
   font-size: 16px;
 }
-

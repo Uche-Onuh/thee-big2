@@ -1,3 +1,14 @@
-.form__group {
+.form__unset {
   display: unset;
+}
+
+.flex__end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add__btn {
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 20px;
 }
