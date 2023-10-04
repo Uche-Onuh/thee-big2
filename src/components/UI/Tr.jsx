@@ -25,10 +25,13 @@ const Tr = ({ item }) => {
         <img src={item.image} alt={item.productName} />
       </td>
       <td>{item.productName}</td>
-      <td>NGN {item.price.toLocaleString()}</td>
+      <td>
+        NGN{" "}
+        {item.price.toLocaleString()}
+      </td>
       <td>
         <div className="inline align-items-center gap-2">
-          {item.quantity}px
+          {item.quantity}pc
           <span>
             <div className="cart__button increment">
               <button onClick={increaseProduct}> + </button>

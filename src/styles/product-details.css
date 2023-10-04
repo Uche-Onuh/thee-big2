@@ -2,6 +2,15 @@
   margin-top: 70px;
 }
 
+.product__details-img {
+  height: 500px;
+}
+
+.product__details-img img {
+  object-fit: contain;
+  margin-top: 30px;
+}
+
 .product__details h2 {
   font-size: 1.6rem;
   margin-bottom: 10px;

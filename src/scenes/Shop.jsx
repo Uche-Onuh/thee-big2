@@ -50,7 +50,7 @@ const Shop = () => {
     const searchTerm = e.target.value;
 
     const searchProducts = products.filter((item) =>
-      item.productName.toLowerCase().includes(searchTerm.toLowerCase())
+      item.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setProductsData(searchProducts);
   };
@@ -70,10 +70,10 @@ const Shop = () => {
               <div className="filter__widget">
                 <select onChange={handleFilter}>
                   <option>Filter by Category</option>
-                  <option value="sofa">Sofa</option>
-                  <option value="mobile">Mobile</option>
-                  <option value="chair">Chair</option>
-                  <option value="watch">Watch</option>
+                  <option value="tshirt">T-shirt</option>
+                  <option value="cargo">Cargo Pant</option>
+                  <option value="caps">Face Cap</option>
+                  <option value="2piece">Two piece</option>
                 </select>
               </div>
             </Col>

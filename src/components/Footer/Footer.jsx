@@ -28,19 +28,19 @@ const Footer = () => {
               <h4 className="quick_links-title">Top Categories</h4>
               <ListGroup className="mb-3">
                 <ListGroupItem className="ps-0 border-0">
-                  <Link>Mobile Phones</Link>
+                  <Link>T-Shirts</Link>
                 </ListGroupItem>
 
                 <ListGroupItem className="ps-0 border-0">
-                  <Link>Mobile Phones</Link>
+                  <Link>Face Caps</Link>
                 </ListGroupItem>
 
                 <ListGroupItem className="ps-0 border-0">
-                  <Link>Mobile Phones</Link>
+                  <Link>Two piece</Link>
                 </ListGroupItem>
 
                 <ListGroupItem className="ps-0 border-0">
-                  <Link>Mobile Phones</Link>
+                  <Link>Cargo pants</Link>
                 </ListGroupItem>
               </ListGroup>
             </div>
@@ -82,14 +82,16 @@ const Footer = () => {
                   <span>
                     <i className="ri-phone-line"></i>
                   </span>
-                  <p>0909090909</p>
+                  <Link to="tel:0909090909">0909090909</Link>
                 </ListGroupItem>
 
                 <ListGroupItem className="ps-0 border-0 d-flex align-items-center gap-2">
                   <span>
                     <i className="ri-mail-line"></i>
                   </span>
-                  <p>onuhblaze@gmail.com</p>
+                  <Link to="mailto:onuhblaze@gmail.com">
+                    onuhblaze@gmail.com
+                  </Link>
                 </ListGroupItem>
               </ListGroup>
             </div>
@@ -98,8 +100,10 @@ const Footer = () => {
           <Col lg="12">
             <p className="footer__copyright">
               Copyright {year} developed by{" "}
-              <Link to="https://onuhuche.netlify.app/">Onuh Uche</Link>. All
-              rights reserved
+              <Link to="https://onuhuche.netlify.app/" target="_blank">
+                Onuh Uche
+              </Link>
+              . All rights reserved
             </p>
           </Col>
         </Row>

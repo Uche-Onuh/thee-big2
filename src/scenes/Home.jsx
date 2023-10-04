@@ -21,19 +21,19 @@ const Home = () => {
 
   useEffect(() => {
     const filteredProducts = products.filter(
-      (item) => item.category === "chair"
+      (item) => item.category === "tshirt"
     );
 
     const filteredNewArrivals = products.filter(
-      (item) => item.category === "mobile"
+      (item) => item.category === "cargo"
     );
 
     const filteredWireless = products.filter(
-      (item) => item.category === "wireless"
+      (item) => item.category === "2piece"
     );
 
     const filteredBestSelling = products.filter(
-      (item) => item.category === "sofa"
+      (item) => item.category === "caps"
     );
 
     setProduct(filteredProducts);
@@ -142,7 +142,7 @@ const Home = () => {
         <Container>
           <Row>
             <Col lg="12" className="text-center">
-              <h2 className="section__title">New Arrivals</h2>
+              <h2 className="section__title" md="2">New Arrivals</h2>
             </Col>
             {loading ? (
               <CardSkeleton cards={4} />

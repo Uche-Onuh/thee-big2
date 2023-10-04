@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 import { cartActions } from "../redux/slices/cartSlice";
 import { toast } from "react-toastify";
 import ProductList from "../components/UI/ProductList";
-import Skeleton from "react-loading-skeleton";
 import DetailSkeleton from "../components/UI/DetailSkeleton";
 
 import { db } from "../firebase.config";
@@ -106,8 +105,8 @@ const ProductDetails = () => {
           <section className="pt-0">
             <Container>
               <Row>
-                <Col lg="6">
-                  <img src={imgUrl} alt={title} />
+                <Col lg="6" className="product__details-img">
+                  <img src={imgUrl} alt={title} height="100%" />
                 </Col>
                 <Col lg="6">
                   <div className="product__details">

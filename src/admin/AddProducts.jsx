@@ -128,11 +128,11 @@ const AddProducts = () => {
                       onChange={(e) => setCat(e.target.value)}
                       required
                     >
-                      <option value="chair">Chair</option>
-                      <option value="sofa">Sofa</option>
-                      <option value="mobile">Mobile</option>
-                      <option value="watch">Watch</option>
-                      <option value="wireless">Wireless</option>
+                      <option>Choose Category</option>
+                      <option value="tshirt">T-shirt</option>
+                      <option value="cargo">Cargo Pant</option>
+                      <option value="caps">Face Cap</option>
+                      <option value="2piece">Two piece</option>
                     </select>
                   </FormGroup>
                 </div>
