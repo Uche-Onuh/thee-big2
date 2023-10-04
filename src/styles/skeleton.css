@@ -1,0 +1,14 @@
+.card__skeleton {
+  margin-bottom: 4rem;
+}
+
+.skeleton__top {
+  height: 250px;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.skeleton__bottom {
+  margin-bottom: 0.5rem;
+  height: 10px;
+}

@@ -1,0 +1,33 @@
+.box {
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.box h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.box span{
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.revenue__box {
+  background: var(--card-bg-01);
+}
+
+.products__box {
+  background: var(--card-bg-03);
+}
+
+.order__box {
+  background: var(--card-bg-04);
+}
+
+.users__box {
+  background: var(--card-bg-02);
+}

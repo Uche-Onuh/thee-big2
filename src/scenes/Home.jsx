@@ -8,10 +8,12 @@ import Services from "../components/Services/Services";
 import ProductList from "../components/UI/ProductList";
 import Clock from "../components/UI/Clock";
 import { motion } from "framer-motion";
-
-import products from "../assets/data/products";
+import useGetdata from "../hooks/useGetdata";
+import CardSkeleton from "../components/UI/CardSkeleton";
 
 const Home = () => {
+  const { data: products, loading } = useGetdata("products");
+
   const [product, setProduct] = useState([]);
   const [bestSelling, setBestSelling] = useState([]);
   const [newArrival, setNewArrival] = useState([]);
@@ -38,7 +40,7 @@ const Home = () => {
     setBestSelling(filteredBestSelling);
     setNewArrival(filteredNewArrivals);
     setWireless(filteredWireless);
-  }, []);
+  }, [products]);
 
   const year = new Date().getFullYear();
   const navigate = useNavigate();
@@ -83,7 +85,11 @@ const Home = () => {
             <Col lg="12" className="text-center">
               <h2 className="section__title">Trending Products</h2>
             </Col>
-            <ProductList data={product} />
+            {loading ? (
+              <CardSkeleton cards={4} />
+            ) : (
+              <ProductList data={product} />
+            )}
           </Row>
         </Container>
       </section>
@@ -94,7 +100,11 @@ const Home = () => {
             <Col lg="12" className="text-center">
               <h2 className="section__title">Best Selling</h2>
             </Col>
-            <ProductList data={bestSelling} />
+            {loading ? (
+              <CardSkeleton cards={4} />
+            ) : (
+              <ProductList data={bestSelling} />
+            )}
           </Row>
         </Container>
       </section>
@@ -134,8 +144,16 @@ const Home = () => {
             <Col lg="12" className="text-center">
               <h2 className="section__title">New Arrivals</h2>
             </Col>
-            <ProductList data={newArrival} />
-            <ProductList data={wireless} />
+            {loading ? (
+              <CardSkeleton cards={4} />
+            ) : (
+              <ProductList data={newArrival} />
+            )}
+            {loading ? (
+              <CardSkeleton cards={4} />
+            ) : (
+              <ProductList data={wireless} />
+            )}
           </Row>
         </Container>
       </section>

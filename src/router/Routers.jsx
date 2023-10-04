@@ -14,7 +14,7 @@ import {
 } from "../scenes";
 import ProtectedRoute from "./ProtectedRoute";
 
-import { AllProducts, AddProducts, Dashboard, Users } from "../admin";
+import { AllProducts, AddProducts, Dashboard, Users, Orders } from "../admin";
 
 const Routers = () => {
   return (
@@ -30,6 +30,7 @@ const Routers = () => {
         <Route path="admin/all-products" element={<AllProducts />} />
         <Route path="admin/add-product" element={<AddProducts />} />
         <Route path="admin/users" element={<Users />} />
+        <Route path="admin/orders" element={<Orders />} />
       </Route>
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<SignUp />} />

@@ -2,6 +2,15 @@
   cursor: pointer;
 }
 
+.product__img {
+  height: 300px;
+}
+
+.product__img img{
+  height: 100%;
+  object-fit: cover;
+}
+
 .product__info h3 {
   font-style: 1.2rem;
   color: var(--primary-color);

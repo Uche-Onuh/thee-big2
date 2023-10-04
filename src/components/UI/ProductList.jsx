@@ -7,10 +7,10 @@ const ProductList = ({ data }) => {
       {data.map((item, index) => (
         <ProductCard
           key={index}
-          name={item.productName}
+          name={item.title}
           id={item.id}
           category={item.category}
-          price={Intl.NumberFormat().format(item.price)}
+          price={item.price}
           img={item.imgUrl}
         />
       ))}
