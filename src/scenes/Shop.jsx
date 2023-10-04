@@ -1,14 +1,22 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import CommonSection from "../components/UI/CommonSection";
 import Helmet from "../components/Helmet/Helmet";
 import { Container, Row, Col } from "reactstrap";
 import "../styles/shop.css";
+import useGetdata from "../hooks/useGetdata";
+import CardSkeleton from "../components/UI/CardSkeleton";
 
-import products from "../assets/data/products";
 import ProductList from "../components/UI/ProductList";
 
 const Shop = () => {
-  const [productsData, setProductsData] = useState(products);
+  const { data: products, loading } = useGetdata("products");
+  console.log(products);
+
+  useEffect(() => {
+    setProductsData(products);
+  }, [products]);
+
+  const [productsData, setProductsData] = useState([]);
 
   const handleFilter = (e) => {
     const filterValue = e.target.value;
@@ -97,7 +105,9 @@ const Shop = () => {
       <section>
         <Container>
           <Row>
-            {productsData.length === 0 ? (
+            {loading ? (
+              <CardSkeleton cards={12} />
+            ) : productsData.length === 0 ? (
               <h1 className="text-center fs-4">No products found!</h1>
             ) : (
               <ProductList data={productsData} />

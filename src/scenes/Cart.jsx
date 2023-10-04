@@ -49,10 +49,10 @@ const Cart = () => {
 
             <Col lg="3">
               <div>
-                <h6 className="d-flex align-items-center gap-5">
+                <h6 className="d-flex align-items-center gap-3">
                   Subtotal:
                   <span className="fs-4 fw-bold">
-                    NGN {Intl.NumberFormat().format(totalAmount)}
+                    NGN {totalAmount.toLocaleString()}
                   </span>
                 </h6>
               </div>

@@ -10,6 +10,7 @@ import { cartActions } from "../redux/slices/cartSlice";
 import { toast } from "react-toastify";
 import ProductList from "../components/UI/ProductList";
 import Skeleton from "react-loading-skeleton";
+import DetailSkeleton from "../components/UI/DetailSkeleton";
 
 import { db } from "../firebase.config";
 import { doc, getDoc } from "firebase/firestore";
@@ -97,7 +98,7 @@ const ProductDetails = () => {
   return (
     <>
       {loading ? (
-        <Skeleton />
+        <DetailSkeleton />
       ) : (
         <Helmet title={title}>
           <CommonSection title={title} />
@@ -136,7 +137,9 @@ const ProductDetails = () => {
                     </div>
 
                     <div className="d-flex align-items-center gap-5">
-                      <span className="product__price">NGN {price}</span>
+                      <span className="product__price">
+                        NGN {price.toLocaleString()}
+                      </span>
                       <span>Category: {category.toUpperCase()}</span>
                     </div>
                     <p className="mt-3">{shortDescription}</p>

@@ -12,3 +12,35 @@
   margin-bottom: 0.5rem;
   height: 10px;
 }
+
+.skeleton__box {
+  display: flex;
+  align-items: top;
+  justify-content: center;
+  gap: 30px;
+  padding: 50px 0;
+}
+
+.left {
+  width: 50%;
+  height: 500px;
+}
+
+.right {
+  width: 50%;
+  height: 30px;
+}
+
+@media only screen and (max-width: 768px) {
+  .skeleton__box {
+    flex-direction: column;
+  }
+
+  .left {
+    width: 100%;
+  }
+
+  .right {
+    width: 100%;
+  }
+}
