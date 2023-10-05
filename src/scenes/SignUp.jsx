@@ -21,10 +21,15 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConf, setPasswordConf] = useState("");
+  const [passIcon, setPassIcon] = useState(false);
+  const [passConfIcon, setPassConfIcon] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
 
   const fileRef = useRef();
+  const passwordRef = useRef(null);
+  const passwordConfRef = useRef(null);
 
   const navigate = useNavigate();
 
@@ -36,6 +41,34 @@ const SignUp = () => {
   const handleButtonClick = (e) => {
     e.preventDefault();
     fileRef.current.click();
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    if (passwordConf !== e.target.value) {
+      setErr("Passwords do not match");
+    } else {
+      setErr("");
+    }
+  };
+
+  const handlePasswordConfChange = (e) => {
+    setPasswordConf(e.target.value);
+    if (password !== e.target.value) {
+      setErr("Passwords do not match");
+    } else {
+      setErr("");
+    }
+  };
+
+  const showPassword = (ref) => {
+    const passwordInput = ref.current;
+
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+    } else {
+      passwordInput.type = "password";
+    }
   };
 
   const signUp = async (e) => {
@@ -94,7 +127,6 @@ const SignUp = () => {
             ) : (
               <Col lg="6" className="m-auto text-center">
                 <h3 className="fw-bold mb-4">Create Account</h3>
-
                 <Form className="auth__form" onSubmit={signUp}>
                   <FormGroup className="form__group">
                     <input
@@ -119,18 +151,55 @@ const SignUp = () => {
                       type="password"
                       placeholder="Enter your password"
                       value={password}
+                      ref={passwordRef}
                       required
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={handlePasswordChange}
                     />
+                    <span
+                      onClick={() => {
+                        showPassword(passwordRef);
+                        setPassIcon((prev) => !prev);
+                      }}
+                    >
+                      {passIcon ? (
+                        <i className="ri-eye-off-line"></i>
+                      ) : (
+                        <i className="ri-eye-line"></i>
+                      )}
+                    </span>
                   </FormGroup>
+                  {err && (
+                    <p
+                      style={{
+                        color: "red",
+                        fontSize: "12px",
+                        textAlign: "left",
+                      }}
+                    >
+                      {err}
+                    </p>
+                  )}
                   <FormGroup className="form__group">
                     <input
                       type="password"
                       placeholder="Confirm Password"
                       value={passwordConf}
+                      ref={passwordConfRef}
                       required
-                      onChange={(e) => setPasswordConf(e.target.value)}
+                      onChange={handlePasswordConfChange}
                     />
+                    <span
+                      onClick={() => {
+                        showPassword(passwordConfRef);
+                        setPassConfIcon((prev) => !prev);
+                      }}
+                    >
+                      {passConfIcon ? (
+                        <i className="ri-eye-off-line"></i>
+                      ) : (
+                        <i className="ri-eye-line"></i>
+                      )}
+                    </span>
                   </FormGroup>
                   <FormGroup className="form__group upload_form">
                     <div className="upload">

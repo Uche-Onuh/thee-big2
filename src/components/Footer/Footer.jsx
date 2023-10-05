@@ -97,6 +97,27 @@ const Footer = () => {
             </div>
           </Col>
 
+          <Col lg="12" className="footer__social-media">
+            <Link
+              to="https://instagram.com/theebigway.ng?igshid=MzRlODBiNWFlZA=="
+              target="_blank"
+            >
+              <i class="ri-instagram-fill"></i>
+            </Link>
+            <Link to="https://twitter.com/" target="_blank">
+              <i class="ri-twitter-fill"></i>
+            </Link>
+            <Link to="https://www.facebook.com/" target="_blank">
+              <i class="ri-facebook-fill"></i>
+            </Link>
+            <Link
+              to="https://wa.me/+2349060518086?text=From%20the%20big%20website"
+              target="_blank"
+            >
+              <i class="ri-whatsapp-fill"></i>
+            </Link>
+          </Col>
+
           <Col lg="12">
             <p className="footer__copyright">
               Copyright {year} developed by{" "}

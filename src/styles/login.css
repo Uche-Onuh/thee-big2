@@ -1,5 +1,18 @@
 .form__group {
   display: flex;
+  position: relative;
+}
+
+.form__group span {
+  position: absolute;
+  left: 95%;
+}
+
+.form__group span i {
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .auth__form {

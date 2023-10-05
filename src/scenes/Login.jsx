@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Helmet from "../components/Helmet/Helmet";
 import { Container, Row, Col, Form, FormGroup } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,7 +12,23 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [passIcon, setPassIcon] = useState(false);
   const navigate = useNavigate();
+
+  const passwordRef = useRef(null);
+
+   const showPassword = () => {
+     const passwordInput = passwordRef.current;
+
+     if (passwordInput.type === "password") {
+       passwordInput.type = "text";
+       setPassIcon(true);
+     } else {
+       passwordInput.type = "password";
+       setPassIcon(false);
+     }
+   };
+
 
   const signin = async (e) => {
     e.preventDefault();
@@ -65,8 +81,16 @@ const Login = () => {
                       placeholder="Enter your password"
                       value={password}
                       required
+                      ref={passwordRef}
                       onChange={(e) => setPassword(e.target.value)}
                     />
+                    <span onClick={showPassword}>
+                      {passIcon ? (
+                        <i className="ri-eye-off-line"></i>
+                      ) : (
+                        <i className="ri-eye-line"></i>
+                      )}
+                    </span>
                   </FormGroup>
 
                   <button type="submit" className="shop__btn auth__btn ">

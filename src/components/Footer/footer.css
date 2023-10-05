@@ -36,10 +36,32 @@
   font-size: 0.9rem;
 }
 
+.footer__social-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  gap: 20px;
+}
+
+.footer__social-media a i {
+  color: var(--primary-color);
+  font-size: 20px;
+  cursor: pointer;
+  background: #fff;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.footer__social-media a:hover {
+  transform: translateY(-5px);
+  transition: transform 0.5s;
+}
+
 .footer__copyright {
   color: #ffffffbb;
   font-size: 0.9rem;
-  margin-top: 50px;
+  margin-top: 10px;
   text-align: center;
 }
 

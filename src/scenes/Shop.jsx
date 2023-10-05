@@ -71,8 +71,9 @@ const Shop = () => {
                   <option>Filter by Category</option>
                   <option value="tshirt">T-shirt</option>
                   <option value="cargo">Cargo Pant</option>
-                  <option value="caps">Face Cap</option>
+                  <option value="caps">Headwares</option>
                   <option value="2piece">Two piece</option>
+                  <option value="footwares">Footwares</option>
                 </select>
               </div>
             </Col>
