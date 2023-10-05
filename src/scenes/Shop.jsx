@@ -10,7 +10,6 @@ import ProductList from "../components/UI/ProductList";
 
 const Shop = () => {
   const { data: products, loading } = useGetdata("products");
-  console.log(products);
 
   useEffect(() => {
     setProductsData(products);

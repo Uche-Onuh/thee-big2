@@ -11,6 +11,7 @@ import {
   Shop,
   SignUp,
   Contact,
+  Privacy,
 } from "../scenes";
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -24,6 +25,8 @@ const Routers = () => {
       <Route path="shop" element={<Shop />} />
       <Route path="cart" element={<Cart />} />
       <Route path="contact" element={<Contact />} />
+      <Route path="terms-of-service" element={<Privacy />} />
+
       <Route path="/*" element={<ProtectedRoute />}>
         <Route path="checkout" element={<Checkout />} />
         <Route path="admin" element={<Dashboard />} />
@@ -32,6 +35,7 @@ const Routers = () => {
         <Route path="admin/users" element={<Users />} />
         <Route path="admin/orders" element={<Orders />} />
       </Route>
+
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<SignUp />} />
     </Routes>

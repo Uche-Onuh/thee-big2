@@ -1,0 +1,22 @@
+.terms__box {
+  margin-bottom: 50px;
+}
+
+.terms__box h2,
+.terms__box h5 {
+  font-weight: 600;
+}
+
+.terms ul li::marker {
+  content: url("../assets/images/marker.jpg");
+  width: 10px;
+  height: 10px;
+  font-size: 14px;
+  margin-right: 20px;
+}
+
+.terms ul li {
+  padding-left: 20px;
+  font-size: 16px;
+  line-height: 1.9;
+}

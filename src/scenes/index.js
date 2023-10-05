@@ -6,5 +6,16 @@ import ProductDetails from "./ProductDetails";
 import Shop from "./Shop";
 import SignUp from "./SignUp";
 import Contact from "./Contact";
+import Privacy from "./Privacy";
 
-export { Home, Cart, Checkout, Login, ProductDetails, Shop, SignUp, Contact };
+export {
+  Home,
+  Cart,
+  Checkout,
+  Login,
+  ProductDetails,
+  Shop,
+  SignUp,
+  Contact,
+  Privacy,
+};
