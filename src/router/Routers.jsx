@@ -14,6 +14,7 @@ import {
   Privacy,
 } from "../scenes";
 import ProtectedRoute from "./ProtectedRoute";
+import AdminProtectedRoute from "./AdminProtectedRoute";
 
 import { AllProducts, AddProducts, Dashboard, Users, Orders } from "../admin";
 
@@ -29,6 +30,9 @@ const Routers = () => {
 
       <Route path="/*" element={<ProtectedRoute />}>
         <Route path="checkout" element={<Checkout />} />
+      </Route>
+
+      <Route path="/*" element={<AdminProtectedRoute />}>
         <Route path="admin" element={<Dashboard />} />
         <Route path="admin/all-products" element={<AllProducts />} />
         <Route path="admin/add-product" element={<AddProducts />} />

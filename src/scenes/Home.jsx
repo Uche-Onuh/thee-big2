@@ -88,7 +88,7 @@ const Home = () => {
             {loading ? (
               <CardSkeleton cards={4} />
             ) : (
-              <ProductList data={product} />
+              <ProductList data={product} size={8} currentPage={1} />
             )}
           </Row>
         </Container>
@@ -103,7 +103,7 @@ const Home = () => {
             {loading ? (
               <CardSkeleton cards={4} />
             ) : (
-              <ProductList data={bestSelling} />
+              <ProductList data={bestSelling} size={8} currentPage={1} />
             )}
           </Row>
         </Container>
@@ -142,17 +142,19 @@ const Home = () => {
         <Container>
           <Row>
             <Col lg="12" className="text-center">
-              <h2 className="section__title" md="2">New Arrivals</h2>
+              <h2 className="section__title" md="2">
+                New Arrivals
+              </h2>
             </Col>
             {loading ? (
               <CardSkeleton cards={4} />
             ) : (
-              <ProductList data={newArrival} />
+              <ProductList data={newArrival} size={8} currentPage={1} />
             )}
             {loading ? (
               <CardSkeleton cards={4} />
             ) : (
-              <ProductList data={wireless} />
+              <ProductList data={wireless} size={8} currentPage={1} />
             )}
           </Row>
         </Container>

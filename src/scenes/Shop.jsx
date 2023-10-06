@@ -6,10 +6,12 @@ import "../styles/shop.css";
 import useGetdata from "../hooks/useGetdata";
 import CardSkeleton from "../components/UI/CardSkeleton";
 
-import ProductList from "../components/UI/ProductList";
+// import ProductList from "../components/UI/ProductList";
+import ProductsPageList from "../components/UI/ProductsPageList";
 
 const Shop = () => {
   const { data: products, loading } = useGetdata("products");
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     setProductsData(products);
@@ -57,6 +59,27 @@ const Shop = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const totalPosts = productsData.length;
+  const pageSize = 20;
+  const pages = Math.ceil(totalPosts / pageSize);
+
+  const goToPrev = () => {
+    const prevPage = Math.max(currentPage - 1, 1);
+    setCurrentPage(prevPage);
+  };
+
+  const goToNext = () => {
+    const nextPage = Math.min(currentPage + 1, pages);
+    setCurrentPage(nextPage);
+  };
+
+  const start = pageSize * (currentPage - 1);
+  const end = pageSize * currentPage;
+  const productPerPage = productsData.slice(start, end);
+
+  const canGoPrev = currentPage > 1;
+  const canGoNext = currentPage < pages;
 
   return (
     <Helmet title="Shop">
@@ -106,12 +129,40 @@ const Shop = () => {
         <Container>
           <Row>
             {loading ? (
-              <CardSkeleton cards={12} />
-            ) : productsData.length === 0 ? (
+              <CardSkeleton cards={20} />
+            ) : productPerPage.length === 0 ? (
               <h1 className="text-center fs-4">No products found!</h1>
             ) : (
-              <ProductList data={productsData} />
+              <ProductsPageList data={productPerPage} />
             )}
+          </Row>
+        </Container>
+      </section>
+
+      <section>
+        <Container>
+          <Row>
+            <Col lg="12">
+              <div className="pagination">
+                <button
+                  className="shop__btn"
+                  onClick={goToPrev}
+                  disabled={!canGoPrev}
+                >
+                  Prev
+                </button>
+                <p>
+                  {currentPage} of {pages}
+                </p>
+                <button
+                  className="shop__btn"
+                  onClick={goToNext}
+                  disabled={!canGoNext}
+                >
+                  Next
+                </button>
+              </div>
+            </Col>
           </Row>
         </Container>
       </section>

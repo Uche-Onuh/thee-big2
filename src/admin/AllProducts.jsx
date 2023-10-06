@@ -28,7 +28,7 @@ const AllProducts = () => {
                   navigate("/admin/add-product");
                 }}
               >
-                <i class="ri-add-line"></i>
+                <i className="ri-add-line"></i>
               </button>
             </div>
             {loading ? (

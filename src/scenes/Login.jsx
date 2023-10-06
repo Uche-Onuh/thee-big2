@@ -4,7 +4,8 @@ import { Container, Row, Col, Form, FormGroup } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/login.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase.config";
+import { auth, db } from "../firebase.config";
+import { doc, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
@@ -17,18 +18,17 @@ const Login = () => {
 
   const passwordRef = useRef(null);
 
-   const showPassword = () => {
-     const passwordInput = passwordRef.current;
+  const showPassword = () => {
+    const passwordInput = passwordRef.current;
 
-     if (passwordInput.type === "password") {
-       passwordInput.type = "text";
-       setPassIcon(true);
-     } else {
-       passwordInput.type = "password";
-       setPassIcon(false);
-     }
-   };
-
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      setPassIcon(true);
+    } else {
+      passwordInput.type = "password";
+      setPassIcon(false);
+    }
+  };
 
   const signin = async (e) => {
     e.preventDefault();
@@ -41,7 +41,15 @@ const Login = () => {
         password
       );
 
-      const user = userCredential.user;
+      let user = userCredential.user;
+
+      // Fetch additional user data (e.g., permissions) from Firestore
+      const userDocRef = doc(db, "users", user.uid);
+      const docSnapshot = await getDoc(userDocRef);
+      const userData = docSnapshot.data();
+
+      user = { ...user, ...userData };
+      console.log("User Data after Merge:", user); // Log user object after merge
 
       setLoading(false);
       toast.success("Succesfully logged in");

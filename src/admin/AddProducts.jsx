@@ -72,7 +72,7 @@ const AddProducts = () => {
               <Form onSubmit={addProduct}>
                 <div className="mb-4">
                   <FormGroup className="form__group form__unset">
-                    <span>Product title</span>
+                    <label>Product title</label>
                     <input
                       type="text"
                       placeholder="Double sofa"
@@ -84,7 +84,7 @@ const AddProducts = () => {
                 </div>
                 <div className="mb-4">
                   <FormGroup className="form__group form__unset">
-                    <span>Short Description</span>
+                    <label>Short Description</label>
                     <input
                       type="text"
                       placeholder="lorem......"
@@ -97,7 +97,7 @@ const AddProducts = () => {
 
                 <div className="mb-4">
                   <FormGroup className="form__group form__unset">
-                    <span>Description</span>
+                    <label>Description</label>
                     <input
                       type="text"
                       placeholder="Description....."
@@ -110,7 +110,7 @@ const AddProducts = () => {
 
                 <div className="d-flex align-items-center justify-content-between gap-5">
                   <FormGroup className="form__group w-50 form__unset">
-                    <span>Price(NGN)</span>
+                    <label>Price(NGN)</label>
                     <input
                       type="number"
                       placeholder="NGN 10000"
@@ -120,7 +120,7 @@ const AddProducts = () => {
                     />
                   </FormGroup>
                   <FormGroup className="form__group w-50 form__unset">
-                    <span>Category</span>
+                    <label>Category</label>
                     <br />
                     <select
                       className="w-100 p-2"
@@ -139,7 +139,7 @@ const AddProducts = () => {
                 </div>
                 <div>
                   <FormGroup className="form__group form__unset">
-                    <span>Product Image</span>
+                    <label>Product Image</label>
                     <input
                       type="file"
                       onChange={(e) => setProdImg(e.target.files[0])}
