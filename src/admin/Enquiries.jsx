@@ -2,26 +2,24 @@ import React from "react";
 import { Container, Row, Col } from "reactstrap";
 import useGetdata from "../hooks/useGetdata";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
+import { db } from "../firebase.config";
 import { toast } from "react-toastify";
 import { doc, deleteDoc } from "firebase/firestore";
-import { db } from "../firebase.config";
 
-const Users = () => {
-  const { data: usersData, loading } = useGetdata("users");
+const Enquiries = () => {
+  const { data: enquiries, loading } = useGetdata("enquiry");
 
-  const deleteUser = async (id) => {
-    await deleteDoc(doc(db, "users", id));
-    toast.success("User deleted!");
+  const deleteEnquiry = async (id) => {
+    await deleteDoc(doc(db, "enquiry", id));
+    toast.success("Enquiry deleted!");
   };
-
-  console.log(usersData);
 
   return (
     <section>
       <Container>
         <Row>
           <Col lg="12">
-            <h4 className="fw-bold">Users</h4>
+            <h4 className="fw-bold">Enquiries</h4>
           </Col>
           <Col lg="12" className="pt-5">
             {loading ? (
@@ -30,27 +28,25 @@ const Users = () => {
               <table className="table">
                 <thead>
                   <tr>
-                    <th>Image</th>
-                    <th>Username</th>
+                    <th>Name</th>
                     <th>Email</th>
-                    <th>Role</th>
+                    <th>Subject</th>
+                    <th>Message</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {usersData?.map((user) => (
-                    <tr key={user.id}>
-                      <td>
-                        <img src={user.photoURL} alt={user.displayName} />
-                      </td>
-                      <td>{user.displayName}</td>
-                      <td>{user.email}</td>
-                      <td>{user.permissions === 1 ? "user" : "admin"}</td>
+                  {enquiries.map((item) => (
+                    <tr key={item.id}>
+                      <td>{item.name}</td>
+                      <td>{item.email}</td>
+                      <td>{item.subject}</td>
+                      <td>{item.message}</td>
                       <td>
                         <button
                           className="btn btn-danger"
                           onClick={() => {
-                            deleteUser(item.id);
+                            deleteEnquiry(item.id);
                           }}
                         >
                           Delete
@@ -68,4 +64,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default Enquiries;

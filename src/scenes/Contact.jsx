@@ -3,6 +3,10 @@ import "../styles/contact.css";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import { Container, Row, Col, Form, FormGroup } from "reactstrap";
+import { db } from "../firebase.config";
+import { collection, addDoc } from "firebase/firestore";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
+import { toast } from "react-toastify";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -15,7 +19,7 @@ const Contact = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const sendMessage = (e) => {
+  const sendMessage = async (e) => {
     e.preventDefault();
     setLoading(true);
 
@@ -26,7 +30,23 @@ const Contact = () => {
       message,
     };
 
-    console.log(messageData);
+    // add enquiry to firebase
+    try {
+      await addDoc(collection(db, "enquiry"), messageData);
+      toast.success("Enquiry successfully sent");
+      setLoading(false);
+    } catch (err) {
+      toast.error("Enquiry not sent");
+      setLoading(false);
+    } finally {
+      setLoading(false);
+      // Clear form inputs after successful submission
+      setName("");
+      setEmail("");
+      setSubject("");
+      setMessage("");
+    }
+    // console.log(messageData);
   };
 
   return (
@@ -64,61 +84,65 @@ const Contact = () => {
                 </p>
               </div>
 
-              <Form onSubmit={sendMessage}>
-                <div className="mb-4 d-flex align-items-center justify-content-between gap-5">
-                  <FormGroup className="form__group w-50 form__unset">
-                    <label htmlFor="name">Name</label>
-                    <input
-                      id="name"
-                      type="text"
-                      placeholder="Enter your name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      required
-                    />
-                  </FormGroup>
-                  <FormGroup className="form__group w-50 form__unset">
-                    <label htmlFor="email">Email</label>
-                    <input
-                      id="email"
-                      type="email"
-                      placeholder="Enter your email address"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-                  </FormGroup>
-                </div>
-                <div className="mb-4 ">
-                  <FormGroup className="form__group form__unset">
-                    <label htmlFor="subject">Subject</label>
-                    <input
-                      id="subject"
-                      type="text"
-                      placeholder="Enter your subject"
-                      value={subject}
-                      onChange={(e) => setSubject(e.target.value)}
-                      required
-                    />
-                  </FormGroup>
-                </div>
-                <div className="mb-2">
-                  <FormGroup className="form__group form__unset">
-                    <label htmlFor="message">Message</label>
-                    <textarea
-                      id="message"
-                      rows="7"
-                      placeholder="Enter your message"
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                    ></textarea>
-                  </FormGroup>
-                </div>
+              {loading ? (
+                <LoadingSpinner />
+              ) : (
+                <Form onSubmit={sendMessage}>
+                  <div className="mb-4 d-flex align-items-center justify-content-between gap-5">
+                    <FormGroup className="form__group w-50 form__unset">
+                      <label htmlFor="name">Name</label>
+                      <input
+                        id="name"
+                        type="text"
+                        placeholder="Enter your name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                      />
+                    </FormGroup>
+                    <FormGroup className="form__group w-50 form__unset">
+                      <label htmlFor="email">Email</label>
+                      <input
+                        id="email"
+                        type="email"
+                        placeholder="Enter your email address"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                      />
+                    </FormGroup>
+                  </div>
+                  <div className="mb-4 ">
+                    <FormGroup className="form__group form__unset">
+                      <label htmlFor="subject">Subject</label>
+                      <input
+                        id="subject"
+                        type="text"
+                        placeholder="Enter your subject"
+                        value={subject}
+                        onChange={(e) => setSubject(e.target.value)}
+                        required
+                      />
+                    </FormGroup>
+                  </div>
+                  <div className="mb-2">
+                    <FormGroup className="form__group form__unset">
+                      <label htmlFor="message">Message</label>
+                      <textarea
+                        id="message"
+                        rows="7"
+                        placeholder="Enter your message"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                      ></textarea>
+                    </FormGroup>
+                  </div>
 
-                <button className="shop__btn" type="submit">
-                  Send Message
-                </button>
-              </Form>
+                  <button className="shop__btn" type="submit">
+                    Send Message
+                  </button>
+                </Form>
+              )}
             </Col>
           </Row>
         </Container>

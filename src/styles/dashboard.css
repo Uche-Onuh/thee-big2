@@ -1,3 +1,7 @@
+.full__page {
+  padding: 80px 0 150px;
+}
+
 .box {
   padding: 20px;
   border-radius: 5px;
@@ -10,10 +14,10 @@
   margin-bottom: 20px;
 }
 
-.box span{
-    color: var(--primary-color);
-    font-weight: 600;
-    font-size: 2rem;
+.box span {
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 2rem;
 }
 
 .revenue__box {

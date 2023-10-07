@@ -6,10 +6,11 @@ import useGetdata from "../hooks/useGetdata";
 const Dashboard = () => {
   const { data: products } = useGetdata("products");
   const { data: users } = useGetdata("users");
+  const { data: orders } = useGetdata("orders");
 
   return (
     <>
-      <section>
+      <section className="full__page">
         <Container>
           <Row>
             <Col className="lg-3">
@@ -21,7 +22,7 @@ const Dashboard = () => {
             <Col className="lg-3">
               <div className="order__box box">
                 <h5>Orders</h5>
-                <span> {Intl.NumberFormat().format(400000)}</span>
+                <span> {Intl.NumberFormat().format(orders.length)}</span>
               </div>
             </Col>
             <Col className="lg-3">

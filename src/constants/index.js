@@ -60,4 +60,8 @@ export const adminNav = [
     display: "Users",
     path: "/admin/users",
   },
+  {
+    display: "Enquiries",
+    path: "/admin/enquiries",
+  },
 ];
