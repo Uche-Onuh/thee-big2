@@ -2,16 +2,21 @@ import React, { useState } from "react";
 import { Container, Row, Col, Form, FormGroup } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
-
 import "../styles/checkout.css";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
+import { useDispatch } from "react-redux";
+import { cartActions } from "../redux/slices/cartSlice";
 import { useSelector } from "react-redux";
 
 import { db } from "../firebase.config";
 import { collection, addDoc } from "firebase/firestore";
-import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
-import { toast } from "react-toastify";
 
 const Checkout = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
@@ -42,11 +47,22 @@ const Checkout = () => {
     setLoading(true);
 
     try {
-      await addDoc(collection(db, "orders"), orderData);
-      toast.success("Order made");
+      const orderRef = await addDoc(collection(db, "orders"), orderData);
+      toast.success("Order made: Redirecting to Payment");
+
+      // Get the order ID from the document reference
+      const orderId = orderRef.id;
+
+      // Dispatch the clearCart action after a successful order
+      dispatch(cartActions.clearCart());
       setLoading(false);
+
+      // Navigate to the payment page with the order ID
+      setTimeout(() => {
+        navigate(`/payment/${orderId}`);
+      }, [3000]);
     } catch (err) {
-      toast.error("Error making order");
+      toast.error(`Error making order: ${err.message}`);
       setLoading(false);
     } finally {
       setName("");
@@ -79,6 +95,7 @@ const Checkout = () => {
                       placeholder="Enter your name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
+                      required
                     />
                   </FormGroup>
 
@@ -87,6 +104,7 @@ const Checkout = () => {
                       type="email"
                       placeholder="Enter your email"
                       value={email}
+                      required
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </FormGroup>
@@ -96,6 +114,7 @@ const Checkout = () => {
                       type="number"
                       placeholder="Phone number"
                       value={number}
+                      required
                       onChange={(e) => setNumber(e.target.value)}
                     />
                   </FormGroup>
@@ -105,6 +124,7 @@ const Checkout = () => {
                       type="text"
                       placeholder="Street address"
                       value={address}
+                      required
                       onChange={(e) => setAddress(e.target.value)}
                     />
                   </FormGroup>
@@ -114,6 +134,7 @@ const Checkout = () => {
                       type="text"
                       placeholder="City"
                       value={city}
+                      required
                       onChange={(e) => setCity(e.target.value)}
                     />
                   </FormGroup>
@@ -123,6 +144,7 @@ const Checkout = () => {
                       type="text"
                       placeholder="Postal Code"
                       value={pCode}
+                      required
                       onChange={(e) => setPCode(e.target.value)}
                     />
                   </FormGroup>
@@ -132,6 +154,7 @@ const Checkout = () => {
                       type="text"
                       placeholder="State"
                       value={state}
+                      required
                       onChange={(e) => setState(e.target.value)}
                     />
                   </FormGroup>

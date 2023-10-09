@@ -123,6 +123,18 @@ const cartSlice = createSlice({
         0
       );
     },
+
+    clearCart: (state) => {
+      // Clear cartItems, totalAmount, and totalQuantity
+      state.cartItems = [];
+      state.totalAmount = 0;
+      state.totalQuantity = 0;
+
+      // Update local storage
+      localStorage.removeItem("cart");
+    },
+
+    // end of reducers
   },
 });
 

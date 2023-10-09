@@ -7,6 +7,7 @@ import Shop from "./Shop";
 import SignUp from "./SignUp";
 import Contact from "./Contact";
 import Privacy from "./Privacy";
+import Payment from "./Payment";
 
 export {
   Home,
@@ -18,4 +19,5 @@ export {
   SignUp,
   Contact,
   Privacy,
+  Payment,
 };

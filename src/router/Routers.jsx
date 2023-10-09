@@ -12,6 +12,7 @@ import {
   SignUp,
   Contact,
   Privacy,
+  Payment,
 } from "../scenes";
 import ProtectedRoute from "./ProtectedRoute";
 import AdminProtectedRoute from "./AdminProtectedRoute";
@@ -38,6 +39,7 @@ const Routers = () => {
 
       <Route path="/*" element={<ProtectedRoute />}>
         <Route path="checkout" element={<Checkout />} />
+        <Route path="payment/:id" element={<Payment />} />
       </Route>
 
       <Route path="/*" element={<AdminProtectedRoute />}>

@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import ProductCard from "./ProductCard";
 
 const ProductsPageList = ({ data }) => {
-  //   const start = pageSize * (currentPage - 1);
-  //   const end = pageSize * currentPage;
-  //   const productPerPage = data.slice(start, end);
   return (
     <>
       {data.map((item, index) => (

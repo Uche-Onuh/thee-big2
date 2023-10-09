@@ -29,7 +29,7 @@ const OrderDetail = () => {
       console.log(err);
     }
   }, []);
-  console.log(order);
+  // console.log(order);
 
   return (
     <section>
