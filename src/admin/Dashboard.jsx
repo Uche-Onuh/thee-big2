@@ -7,6 +7,12 @@ const Dashboard = () => {
   const { data: products } = useGetdata("products");
   const { data: users } = useGetdata("users");
   const { data: orders } = useGetdata("orders");
+  const { data: enquiries } = useGetdata("enquiry");
+
+  // Calculate the total sum of totalAmounts in orders
+  const totalSales = orders
+    ? orders.reduce((acc, order) => acc + order.totalAmount, 0)
+    : 0;
 
   return (
     <>
@@ -16,7 +22,7 @@ const Dashboard = () => {
             <Col className="lg-3">
               <div className="revenue__box box">
                 <h5>Total Sales</h5>
-                <span>NGN {Intl.NumberFormat().format(400000)}</span>
+                <span>NGN {Intl.NumberFormat().format(totalSales)}</span>
               </div>
             </Col>
             <Col className="lg-3">
@@ -37,6 +43,7 @@ const Dashboard = () => {
                 <span>{Intl.NumberFormat().format(users.length)}</span>
               </div>
             </Col>
+            
           </Row>
         </Container>
       </section>

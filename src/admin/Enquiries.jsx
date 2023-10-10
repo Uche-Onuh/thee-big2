@@ -5,10 +5,13 @@ import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
 import { doc, deleteDoc } from "firebase/firestore";
+import DeleteConfirmationModal from "../components/UI/ConfirmationModal";
 
 const Enquiries = () => {
   const { data: enquiriesData, loading } = useGetdata("enquiry");
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedEnquiryId, setSelectedEnquiryId] = useState(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const totalPosts = enquiriesData.length;
   const pageSize = 10;
@@ -31,9 +34,27 @@ const Enquiries = () => {
   const canGoPrev = currentPage > 1;
   const canGoNext = currentPage < pages;
 
-  const deleteEnquiry = async (id) => {
-    await deleteDoc(doc(db, "enquiry", id));
-    toast.success("Enquiry deleted!");
+  // const deleteEnquiry = async (id) => {
+  //   await deleteDoc(doc(db, "enquiry", id));
+  //   toast.success("Enquiry deleted!");
+  // };
+
+  const toggleDeleteModal = (enquiryId = null) => {
+    setSelectedEnquiryId(enquiryId);
+    setIsDeleteModalOpen(!isDeleteModalOpen);
+  };
+
+  const deleteEnquiry = async () => {
+    if (selectedEnquiryId) {
+      try {
+        await deleteDoc(doc(db, "enquiry", selectedEnquiryId));
+        toast.success("User enquiry!");
+        toggleDeleteModal(); // Close the modal after successful deletion
+      } catch (error) {
+        console.error("Error deleting enquiry:", error);
+        toast.error("Error deleting enquiry. Please try again.");
+      }
+    }
   };
 
   return (
@@ -68,9 +89,7 @@ const Enquiries = () => {
                         <td>
                           <button
                             className="btn btn-danger"
-                            onClick={() => {
-                              deleteEnquiry(item.id);
-                            }}
+                            onClick={() => toggleDeleteModal(item.id)}
                           >
                             Delete
                           </button>
@@ -112,6 +131,13 @@ const Enquiries = () => {
           </Row>
         </Container>
       </section>
+
+      <DeleteConfirmationModal
+        isOpen={isDeleteModalOpen}
+        toggle={() => toggleDeleteModal()}
+        category="enquiry"
+        onDelete={deleteEnquiry}
+      />
     </>
   );
 };

@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import { Container, Row, Col } from "reactstrap";
 import "../styles/privacy.css";
 
 const Privacy = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Helmet title="Terms of Service">
       <CommonSection title="Terms of Service" />

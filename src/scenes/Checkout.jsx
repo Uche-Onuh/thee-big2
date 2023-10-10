@@ -48,7 +48,7 @@ const Checkout = () => {
 
     try {
       const orderRef = await addDoc(collection(db, "orders"), orderData);
-      toast.success("Order made: Redirecting to Payment");
+      toast.success("Order made, redirecting to payment page");
 
       // Get the order ID from the document reference
       const orderId = orderRef.id;

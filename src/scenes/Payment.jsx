@@ -12,7 +12,6 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const apiKey = process.env.REACT_APP_PAYSTACK_API_KEY;
-console.log(apiKey);
 
 const Payment = () => {
   const navigate = useNavigate();

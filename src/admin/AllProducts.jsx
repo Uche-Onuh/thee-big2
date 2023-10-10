@@ -6,11 +6,14 @@ import useGetdata from "../hooks/useGetdata";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import DeleteConfirmationModal from "../components/UI/ConfirmationModal";
 
 const AllProducts = () => {
   const navigate = useNavigate();
   const { data: productsData, loading } = useGetdata("products");
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedProductId, setSelectedProductId] = useState(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const totalPosts = productsData.length;
   const pageSize = 10;
@@ -33,9 +36,22 @@ const AllProducts = () => {
   const canGoPrev = currentPage > 1;
   const canGoNext = currentPage < pages;
 
-  const deleteProduct = async (id) => {
-    await deleteDoc(doc(db, "products", id));
-    toast.success("Product deleted!");
+  const toggleDeleteModal = (productId = null) => {
+    setSelectedProductId(productId);
+    setIsDeleteModalOpen(!isDeleteModalOpen);
+  };
+
+  const deleteProduct = async () => {
+    if (selectedProductId) {
+      try {
+        await deleteDoc(doc(db, "products", selectedProductId));
+        toast.success("Product deleted!");
+        toggleDeleteModal(); // Close the modal after successful deletion
+      } catch (error) {
+        console.error("Error deleting product:", error);
+        toast.error("Error deleting product. Please try again.");
+      }
+    }
   };
 
   return (
@@ -79,9 +95,7 @@ const AllProducts = () => {
                         <td>
                           <button
                             className="btn btn-danger"
-                            onClick={() => {
-                              deleteProduct(item.id);
-                            }}
+                            onClick={() => toggleDeleteModal(item.id)}
                           >
                             Delete
                           </button>
@@ -123,6 +137,13 @@ const AllProducts = () => {
           </Row>
         </Container>
       </section>
+
+      <DeleteConfirmationModal
+        isOpen={isDeleteModalOpen}
+        toggle={() => toggleDeleteModal()}
+        onDelete={deleteProduct}
+        category="product"
+      />
     </>
   );
 };

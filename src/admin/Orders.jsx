@@ -70,6 +70,7 @@ const Orders = () => {
                           style={{
                             textTransform: "uppercase",
                             fontWeight: 700,
+                            color: item.paymentId === "" ? "red" : "",
                           }}
                         >
                           {item.paymentId === "" ? "Not paid" : "Paid"}

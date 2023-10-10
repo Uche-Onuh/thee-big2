@@ -24,13 +24,9 @@ const useAuth = () => {
       }
     });
 
-    console.log(currentUser);
-
     // Cleanup function to unsubscribe when the component is unmounted
     return () => unsubscribe();
   }, []);
-
-  console.log("After useEffect (2):", currentUser);
 
   return currentUser;
 };

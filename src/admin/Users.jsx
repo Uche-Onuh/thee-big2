@@ -5,10 +5,13 @@ import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 import { toast } from "react-toastify";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
+import DeleteConfirmationModal from "../components/UI/ConfirmationModal";
 
 const Users = () => {
   const { data: usersData, loading } = useGetdata("users");
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const totalPosts = usersData.length;
   const pageSize = 10;
@@ -31,12 +34,23 @@ const Users = () => {
   const canGoPrev = currentPage > 1;
   const canGoNext = currentPage < pages;
 
-  const deleteUser = async (id) => {
-    await deleteDoc(doc(db, "users", id));
-    toast.success("User deleted!");
+  const toggleDeleteModal = (userId = null) => {
+    setSelectedUserId(userId);
+    setIsDeleteModalOpen(!isDeleteModalOpen);
   };
 
-  console.log(usersData);
+  const deleteUser = async () => {
+    if (selectedUserId) {
+      try {
+        await deleteDoc(doc(db, "users", selectedUserId));
+        toast.success("User deleted!");
+        toggleDeleteModal(); // Close the modal after successful deletion
+      } catch (error) {
+        console.error("Error deleting user:", error);
+        toast.error("Error deleting product. Please try again.");
+      }
+    }
+  };
 
   return (
     <>
@@ -72,9 +86,7 @@ const Users = () => {
                         <td>
                           <button
                             className="btn btn-danger"
-                            onClick={() => {
-                              deleteUser(item.id);
-                            }}
+                            onClick={() => toggleDeleteModal(user.id)}
                           >
                             Delete
                           </button>
@@ -116,6 +128,13 @@ const Users = () => {
           </Row>
         </Container>
       </section>
+
+      <DeleteConfirmationModal
+        isOpen={isDeleteModalOpen}
+        toggle={() => toggleDeleteModal()}
+        onDelete={deleteUser}
+        category="user"
+      />
     </>
   );
 };

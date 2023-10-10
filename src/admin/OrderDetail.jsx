@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 import { Container, Row, Col } from "reactstrap";
 import { useParams } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
+import { toast } from "react-toastify";
 
 const OrderDetail = () => {
   const [order, setOrder] = useState({});
@@ -30,6 +31,17 @@ const OrderDetail = () => {
     }
   }, []);
   // console.log(order);
+
+  const updateOrder = async (action) => {
+    try {
+      await updateDoc(docRef, { orderStatus: action });
+      toast.success("Order status updated");
+      // Assuming you want to update the local state as well
+      setOrder((prevOrder) => ({ ...prevOrder, orderStatus: action }));
+    } catch (error) {
+      toast.success(error);
+    }
+  };
 
   return (
     <section>
@@ -80,7 +92,7 @@ const OrderDetail = () => {
             </Col>
             <Col lg="6">
               <h6 className="mb-3 fw-bold">Order Items</h6>
-              <table class="table">
+              <table className="table">
                 <thead>
                   <tr>
                     <th>Product</th>
@@ -114,7 +126,10 @@ const OrderDetail = () => {
                 Payment Status :{" "}
                 <span
                   className="float-end"
-                  style={{ textTransform: "upperCase" }}
+                  style={{
+                    textTransform: "upperCase",
+                    color: order.paymentId === "" ? "red" : "",
+                  }}
                 >
                   {order.paymentId === "" ? "Not paid" : order.paymentId}
                 </span>
@@ -132,8 +147,33 @@ const OrderDetail = () => {
               <hr color="blue" />
               <h5>
                 Edit Order Status :{" "}
-                <button className="btn btn-primary float-end">
+                <button
+                  className="btn btn-primary float-end"
+                  onClick={() => {
+                    updateOrder("completed");
+                  }}
+                  disabled={
+                    order.orderStatus === "completed" ||
+                    order.orderStatus === "cancelled"
+                  }
+                >
                   Order Completed
+                </button>
+              </h5>
+              <hr color="blue" />
+              <h5>
+                Cancel Order:{" "}
+                <button
+                  className="btn btn-danger float-end"
+                  onClick={() => {
+                    updateOrder("cancelled");
+                  }}
+                  disabled={
+                    order.orderStatus === "cancelled" ||
+                    order.orderStatus === "completed"
+                  }
+                >
+                  Cancel Order
                 </button>
               </h5>
             </Col>
