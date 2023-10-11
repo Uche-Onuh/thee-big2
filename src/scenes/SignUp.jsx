@@ -85,10 +85,15 @@ const SignUp = () => {
       const uploadTask = uploadBytesResumable(storageRef, selectedImage);
 
       uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          // Handle progress or other snapshot events if needed
+        },
         (error) => {
           toast.error(error.message);
         },
         () => {
+          // Upload completed successfully, get the download URL
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             // update user profile
             await updateProfile(user, {
@@ -106,6 +111,23 @@ const SignUp = () => {
           });
         }
       );
+
+      // Send welcome email using Express server
+      const response = await fetch("http://localhost:3000/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          userName: userName,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Email sending failed");
+      }
+
       setLoading(false);
       toast.success("Account created");
       navigate("/login");

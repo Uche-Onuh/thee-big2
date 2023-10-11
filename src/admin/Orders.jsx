@@ -57,7 +57,7 @@ const Orders = () => {
                       <tr key={item.id}>
                         <td style={{ color: "red" }}>
                           <Link to={`/admin/order-details/${item.id}`}>
-                            {item.id}
+                            #{item.id}
                           </Link>
                         </td>
                         <td>{item.email}</td>

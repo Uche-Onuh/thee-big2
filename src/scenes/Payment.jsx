@@ -10,6 +10,7 @@ import "../styles/payment.css";
 import { PaystackButton } from "react-paystack";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { pay } from "../assets/images";
 
 const apiKey = process.env.REACT_APP_PAYSTACK_API_KEY;
 
@@ -59,6 +60,9 @@ const Payment = () => {
         paymentId: reference.reference,
       }));
 
+      // Send receipt email with order items
+      await sendReceiptEmail(order.orderItems); // Assuming order.items is an array of order items
+
       toast.success("Payment successful");
 
       // redirect
@@ -67,6 +71,33 @@ const Payment = () => {
       }, [3000]);
     } catch (error) {
       toast.error("Error updating order:", error);
+    }
+  };
+
+  const sendReceiptEmail = async (orderItems) => {
+    try {
+      // Make an HTTP request to your server endpoint for sending receipt emails
+      const response = await fetch("http://localhost:3000/send-receipt-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          orderId: id,
+          userEmail: order.email,
+          orderItems: orderItems,
+          totalAmount: order.totalAmount,
+          // Add any other relevant data needed for sending the receipt email
+        }),
+      });
+
+      if (!response.ok) {
+        console.error("Failed to send receipt email");
+      } else {
+        console.log("Receipt email sent successfully");
+      }
+    } catch (error) {
+      console.error("Error sending receipt email:", error);
     }
   };
 
@@ -90,7 +121,7 @@ const Payment = () => {
       <section>
         <Container>
           <Row>
-            <Col lg="12">
+            <Col lg="6">
               {loading ? (
                 <LoadingSpinner />
               ) : (
@@ -106,7 +137,7 @@ const Payment = () => {
                       Order contact number: <span>{order.number}</span>
                     </p>
                     <p>
-                      Order id: <span>{id}</span>
+                      Order id: <span>#{id}</span>
                     </p>
                     <p>
                       Total Price:{" "}
@@ -119,6 +150,9 @@ const Payment = () => {
                   </div>
                 </div>
               )}
+            </Col>
+            <Col lg="6">
+              <img src={pay} alt="pay illustration" height={"100%"}/>
             </Col>
           </Row>
         </Container>
