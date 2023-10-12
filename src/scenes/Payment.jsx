@@ -61,7 +61,7 @@ const Payment = () => {
       }));
 
       // Send receipt email with order items
-      await sendReceiptEmail(order.orderItems); // Assuming order.items is an array of order items
+      await sendReceiptEmail(order.orderItems); 
 
       toast.success("Payment successful");
 
@@ -87,7 +87,11 @@ const Payment = () => {
           userEmail: order.email,
           orderItems: orderItems,
           totalAmount: order.totalAmount,
-          // Add any other relevant data needed for sending the receipt email
+          address : order.address,
+          city: order.city,
+          state: order.state,
+          pCode: order.pCode,
+         
         }),
       });
 
