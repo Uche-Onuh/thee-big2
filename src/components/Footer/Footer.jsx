@@ -2,7 +2,7 @@ import React from "react";
 import "./footer.css";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
 import { Link } from "react-router-dom";
-import { logo } from "../../assets/images";
+import { logowhite } from "../../assets/images";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -12,15 +12,15 @@ const Footer = () => {
         <Row>
           <Col lg="4" className="mb-4" md="6">
             <div className="logo">
-              <img src={logo} alt="logo" />
+              <img src={logowhite} alt="logo" />
               <div>
                 <h1 className="text-white">T H E E B I G</h1>
               </div>
             </div>
             <p className="footer__text mt-4">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam
-              aperiam consectetur ex at neque placeat cupiditate eveniet hic nam
-              accusamus.
+              Elevate your style with T H E E B I G, where fashion meets comfort
+              and elegance. Explore our handcrafted clothing and selection of
+              quality footwears that redefine your wardrobe essentials.
             </p>
           </Col>
           <Col lg="3" className="mb-4" md="3">

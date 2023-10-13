@@ -32,6 +32,7 @@ const Cart = () => {
                     <tr>
                       <th>Image</th>
                       <th>Title</th>
+                      <th>Size</th>
                       <th>Price</th>
                       <th>Qty</th>
                       <th>Delete</th>

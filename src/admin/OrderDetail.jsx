@@ -98,6 +98,7 @@ const OrderDetail = () => {
                     <th>Product</th>
                     <th>Name</th>
                     <th>Price</th>
+                    <th>Size</th>
                     <th>Quantity</th>
                   </tr>
                 </thead>
@@ -109,6 +110,7 @@ const OrderDetail = () => {
                       </td>
                       <td>{item.productName}</td>
                       <td>{Intl.NumberFormat().format(item.price)}</td>
+                      <td>{item.itemSize}</td>
                       <td>{item.quantity}</td>
                     </tr>
                   ))}

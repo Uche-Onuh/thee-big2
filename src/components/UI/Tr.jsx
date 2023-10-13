@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import { cartActions } from "../../redux/slices/cartSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const Tr = ({ item }) => {
   const dispatch = useDispatch();
@@ -19,6 +19,12 @@ const Tr = ({ item }) => {
     dispatch(cartActions.decreaseItem(item.id));
   };
 
+  const updateItemSize = (event) => {
+    const newSize = event.target.value;
+    // Dispatch an action to update the size in the cart
+    dispatch(cartActions.updateItemSize({ itemId: item.id, newSize }));
+  };
+
   return (
     <tr>
       <td>
@@ -26,18 +32,37 @@ const Tr = ({ item }) => {
       </td>
       <td>{item.productName}</td>
       <td>
-        NGN{" "}
-        {item.price.toLocaleString()}
+        {" "}
+        <input
+          type="text"
+          value={item.itemSize}
+          onChange={updateItemSize}
+          aria-label={`Update size of ${item.productName}`}
+          style={{ width: "100px", textTransform: "uppercase" }}
+        />
       </td>
+      <td>NGN {item.price.toLocaleString()}</td>
       <td>
         <div className="inline align-items-center gap-2">
           {item.quantity}pc
           <span>
             <div className="cart__button increment">
-              <button onClick={increaseProduct}> + </button>
+              <button
+                onClick={increaseProduct}
+                aria-label={`Increase quantity of ${item.productName}`}
+              >
+                {" "}
+                +{" "}
+              </button>
             </div>
             <div className="cart__button decrement">
-              <button onClick={decreaseProduct}> - </button>
+              <button
+                onClick={decreaseProduct}
+                aria-label={`Decrease quantity of ${item.productName}`}
+              >
+                {" "}
+                -{" "}
+              </button>
             </div>
           </span>
         </div>
@@ -47,6 +72,7 @@ const Tr = ({ item }) => {
           className="ri-delete-bin-line"
           whileTap={{ scale: 1.1 }}
           onClick={deleteProduct}
+          aria-label={`Delete ${item.productName} from the cart`}
         ></motion.i>
       </td>
     </tr>

@@ -20,6 +20,7 @@ const ProductCard = ({ id, name, category, price, img }) => {
         productName: name,
         price: price,
         image: img,
+        itemSize: category === "footwares" ? 40 : "M",
       })
     );
 

@@ -52,11 +52,11 @@ const Home = () => {
             <Col lg="6" md="6">
               <div className="hero__content">
                 <p className="hero__subtitle">Trending Products in {year}</p>
-                <h2>Make your Interior More Minimalist & Modern</h2>
+                <h2>Elevate Your Style with <br/> T H E E B I G </h2>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
-                  provident delectus inventore blanditiis rem quia neque
-                  reprehenderit sapiente ea deserunt?
+                  Explore a world of fashion where comfort meets elegance. Our
+                  handcrafted clothing and selection of quality footwears redefine your wardrobe
+                  essentials with a touch of sophistication.
                 </p>
                 <motion.button
                   whileTap={{ scale: 1.1 }}

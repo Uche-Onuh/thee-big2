@@ -32,6 +32,7 @@ const cartSlice = createSlice({
           price: newItem.price,
           quantity: 1,
           totalPrice: newItem.price,
+          itemSize: newItem.itemSize,
         });
       } else {
         existingItem.quantity++;
@@ -132,6 +133,19 @@ const cartSlice = createSlice({
 
       // Update local storage
       localStorage.removeItem("cart");
+    },
+
+    updateItemSize: (state, action) => {
+      const { itemId, newSize } = action.payload;
+      const existingItem = state.cartItems.find((item) => item.id === itemId);
+
+      if (existingItem) {
+        // Update the item size
+        existingItem.itemSize = newSize;
+
+        // Update local storage
+        localStorage.setItem("cart", JSON.stringify(state));
+      }
     },
 
     // end of reducers
