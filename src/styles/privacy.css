@@ -9,14 +9,14 @@
 
 .terms ul li::marker {
   content: url("../assets/images/marker.jpg");
-  width: 10px;
-  height: 10px;
-  font-size: 14px;
+  width: 100px;
+  height: 100px;
+  font-size: 20px;
   margin-right: 20px;
 }
 
 .terms ul li {
   padding-left: 20px;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.9;
 }

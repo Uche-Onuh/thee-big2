@@ -1,5 +1,7 @@
 .billing__form .form__group input {
   border: 1px solid var(--card-bg-02);
+  padding: 10px;
+  font-size: 18px;
 }
 
 .checkout__cart {

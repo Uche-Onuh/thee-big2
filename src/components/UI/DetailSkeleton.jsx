@@ -9,7 +9,7 @@ const DetailSkeleton = () => {
     <>
       <CommonSectionSkeleton />
       <section>
-        <Container>
+        <div className="wrap">
           <div className="skeleton__box">
             <div className="left">
               <Skeleton width={"100%"} height={"100%"} />
@@ -19,7 +19,7 @@ const DetailSkeleton = () => {
               <Skeleton width={"40%"} />
             </div>
           </div>
-        </Container>
+        </div>
       </section>
     </>
   );

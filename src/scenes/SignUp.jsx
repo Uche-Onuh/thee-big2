@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import Helmet from "../components/Helmet/Helmet";
-import { Container, Row, Col, Form, FormGroup } from "reactstrap";
+import { Row, Col, Form, FormGroup } from "reactstrap";
 import { Link } from "react-router-dom";
 import "../styles/login.css";
 import { userIcon } from "../assets/images";
@@ -8,6 +8,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { setDoc, doc } from "firebase/firestore";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
+import CommonSection from "../components/UI/CommonSection";
 
 import { auth } from "../firebase.config";
 import { storage } from "../firebase.config";
@@ -139,8 +140,9 @@ const SignUp = () => {
 
   return (
     <Helmet title="Create Account">
+      <CommonSection title="Create Account" />
       <section>
-        <Container>
+        <div className="wrap">
           <Row>
             {loading ? (
               <Col lg="12" className="text-center ">
@@ -148,7 +150,6 @@ const SignUp = () => {
               </Col>
             ) : (
               <Col lg="6" className="m-auto text-center">
-                <h3 className="fw-bold mb-4">Create Account</h3>
                 <Form className="auth__form" onSubmit={signUp}>
                   <FormGroup className="form__group">
                     <input
@@ -265,7 +266,7 @@ const SignUp = () => {
               </Col>
             )}
           </Row>
-        </Container>
+        </div>
       </section>
     </Helmet>
   );

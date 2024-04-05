@@ -1,6 +1,6 @@
 import React from "react";
 import "./footer.css";
-import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
+import { Row, Col, ListGroup, ListGroupItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import { logowhite } from "../../assets/images";
 
@@ -8,7 +8,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
   return (
     <footer className="footer">
-      <Container>
+      <div className="wrap">
         <Row>
           <Col lg="4" className="mb-4" md="6">
             <div className="logo">
@@ -62,7 +62,7 @@ const Footer = () => {
                 </ListGroupItem>
 
                 <ListGroupItem className="ps-0 border-0">
-                  <Link to="/terms-of-service">Privacy Policy</Link>
+                  <Link to="/terms-of-service">Terms of Service</Link>
                 </ListGroupItem>
               </ListGroup>
             </div>
@@ -96,8 +96,10 @@ const Footer = () => {
               </ListGroup>
             </div>
           </Col>
+        </Row>
 
-          <Col lg="12" className="footer__social-media">
+        <Row className="socials">
+          <Col lg="6" className="footer__social-media">
             <Link
               to="https://instagram.com/theebigway.ng?igshid=MzRlODBiNWFlZA=="
               target="_blank"
@@ -118,7 +120,7 @@ const Footer = () => {
             </Link>
           </Col>
 
-          <Col lg="12">
+          <Col lg="6">
             <p className="footer__copyright">
               Copyright {year} developed by{" "}
               <Link to="https://onuhuche.netlify.app/" target="_blank">
@@ -128,7 +130,7 @@ const Footer = () => {
             </p>
           </Col>
         </Row>
-      </Container>
+      </div>
     </footer>
   );
 };

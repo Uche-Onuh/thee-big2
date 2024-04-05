@@ -1,3 +1,7 @@
+.action__row{
+   --bs-gutter-x: 20px;
+}
+
 .filter__widget select {
   padding: 8px 20px;
   border: 1px solid var(--primary-color);

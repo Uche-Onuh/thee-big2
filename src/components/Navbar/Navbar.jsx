@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 import { motion } from "framer-motion";
 
-import { Container, Row } from "reactstrap";
+import {  Row } from "reactstrap";
 
 import { logo, userIcon } from "../../assets/images";
 import { signOut } from "firebase/auth";
@@ -63,7 +63,6 @@ const Navbar = () => {
 
   return (
     <header className="header" ref={headerRef}>
-      <Container>
         <Row>
           <div className="nav__wrapper">
             <div className="logo">
@@ -134,7 +133,6 @@ const Navbar = () => {
             </div>
           </div>
         </Row>
-      </Container>
     </header>
   );
 };

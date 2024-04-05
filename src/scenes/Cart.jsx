@@ -21,7 +21,7 @@ const Cart = () => {
     <Helmet title={"Cart"}>
       <CommonSection title={"Shopping Cart"} />
       <section>
-        <Container>
+        <div className="wrap">
           <Row>
             <Col lg="9" className="cart__scroll">
               {cartItems.length === 0 ? (
@@ -52,7 +52,7 @@ const Cart = () => {
               <div>
                 <h6 className="d-flex align-items-center gap-3">
                   Subtotal:
-                  <span className="fs-4 fw-bold">
+                  <span className="fs-1 fw-bold">
                     NGN {totalAmount.toLocaleString()}
                   </span>
                 </h6>
@@ -62,14 +62,14 @@ const Cart = () => {
               </p>
               <div>
                 <button
-                  className="shop__btn w-100 "
+                  className="shop__btn w-100 cart__shop-btn"
                   onClick={() => navigate("/checkout")}
                   disabled={totalAmount === 0 ? true : false}
                 >
                   Checkout
                 </button>
                 <button
-                  className="shop__btn w-100 mt-3"
+                  className="shop__btn w-100 mt-3 cart__shop-btn"
                   onClick={() => navigate("/shop")}
                 >
                   Continue Shopping
@@ -77,7 +77,7 @@ const Cart = () => {
               </div>
             </Col>
           </Row>
-        </Container>
+        </div>
       </section>
     </Helmet>
   );

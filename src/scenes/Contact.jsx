@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../styles/contact.css";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
-import { Container, Row, Col, Form, FormGroup } from "reactstrap";
+import { Row, Col, Form, FormGroup } from "reactstrap";
 import { db } from "../firebase.config";
 import { collection, addDoc } from "firebase/firestore";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
@@ -53,7 +53,7 @@ const Contact = () => {
     <Helmet title="Contact us">
       <CommonSection title="Contact Us" />
       <section>
-        <Container>
+        <div className="wrap">
           <Row>
             <Col lg="12">
               <iframe
@@ -67,11 +67,11 @@ const Contact = () => {
               ></iframe>
             </Col>
           </Row>
-        </Container>
+        </div>
       </section>
 
       <section>
-        <Container>
+        <div className="wrap">
           <Row>
             <Col lg="12">
               <div className="mb-4">
@@ -87,7 +87,7 @@ const Contact = () => {
               {loading ? (
                 <LoadingSpinner />
               ) : (
-                <Form onSubmit={sendMessage}>
+                <Form onSubmit={sendMessage} className="contact__form">
                   <div className="mb-4 d-flex align-items-center justify-content-between gap-5">
                     <FormGroup className="form__group w-50 form__unset">
                       <label htmlFor="name">Name</label>
@@ -145,7 +145,7 @@ const Contact = () => {
               )}
             </Col>
           </Row>
-        </Container>
+        </div>
       </section>
     </Helmet>
   );

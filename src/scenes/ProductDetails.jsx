@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Row, Col } from "reactstrap";
 import { useParams } from "react-router-dom";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
@@ -103,7 +103,7 @@ const ProductDetails = () => {
           <CommonSection title={title} />
 
           <section className="pt-0">
-            <Container>
+            <div className="wrap">
               <Row>
                 <Col lg="6" className="product__details-img">
                   <img src={imgUrl} alt={title} height="100%" />
@@ -129,10 +129,6 @@ const ProductDetails = () => {
                           <i className="ri-star-half-s-line"></i>
                         </span>
                       </div>
-
-                      {/* <p>
-                    (<span>{avgRating}</span> ratings)
-                  </p> */}
                     </div>
 
                     <div className="d-flex align-items-center gap-5">
@@ -153,11 +149,11 @@ const ProductDetails = () => {
                   </div>
                 </Col>
               </Row>
-            </Container>
+            </div>
           </section>
 
           <section>
-            <Container>
+            <div className="wrap">
               <Row>
                 <Col lg="12">
                   <div className="tab__wrapper d-flex align-items-center gap-5">
@@ -171,14 +167,6 @@ const ProductDetails = () => {
                     >
                       Description
                     </h6>
-                    {/* <h6
-                  className={`${tab === "review" ? "active__tab" : ""}`}
-                  onClick={() => {
-                    setTab("review");
-                  }}
-                >
-                  Reviews ({reviews.length})
-                </h6> */}
                   </div>
 
                   {tab === "description" ? (
@@ -188,16 +176,6 @@ const ProductDetails = () => {
                   ) : (
                     <div className="product__review mt-5">
                       <div className="review__wrapper">
-                        {/* <ul>
-                      {reviews.map((review, index) => (
-                        <li key={index} className="mb-4">
-                          <h6>{review.name}</h6>
-                          <span>{review.rating} (rating)</span>
-                          <p>{review.text}</p>
-                        </li>
-                      ))}
-                    </ul> */}
-
                         <div className="review__form">
                           <h4>Leave your experience</h4>
                           <form action="" onSubmit={submitHandler}>
@@ -271,12 +249,14 @@ const ProductDetails = () => {
                 </Col>
 
                 <Col lg="12">
-                  <h2 className="related__title mt-5">You might also like</h2>
+                  <h2 className="related__title mt-5 mb-3 fs-1">
+                    You might also like
+                  </h2>
                 </Col>
 
-                <ProductList data={relatedProducts} />
+                <ProductList data={relatedProducts} size={8} currentPage={1} />
               </Row>
-            </Container>
+            </div>
           </section>
         </Helmet>
       )}

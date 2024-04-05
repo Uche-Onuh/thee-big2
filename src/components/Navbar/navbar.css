@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap");
+
 .header {
   width: 100%;
   height: 70px;
@@ -8,45 +10,53 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 98%;
+  margin: 0 auto;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  column-gap: 8px;
+  column-gap: 20px;
 }
 
 .logo img {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 3rem;
+  height: 3rem;
 }
 
 .logo h1 {
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: 900;
   color: var(--primary-color);
 }
 
 .menu {
   display: flex;
   align-items: center;
-  column-gap: 2.7rem;
+  column-gap: 4rem;
   margin-bottom: 0;
 }
 
 .menu a {
+  font-family: "Bodoni Moda", serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
   color: var(--primary-color);
   font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1.5rem;
 }
 
 .nav__icons {
   display: flex;
   align-items: top;
-  gap: 1.2rem;
+  gap: 2rem;
 }
 
 .nav__icons span i {
-  font-size: 1.4rem;
+  font-size: 2.4rem;
   color: var(--primary-color);
   cursor: pointer;
 }
@@ -58,10 +68,10 @@
 
 .badge {
   position: absolute;
-  top: 25%;
+  top: 15%;
   right: -8px;
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
   content: "";
   background: var(--primary-color);
   color: #fff;
@@ -69,14 +79,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
+  font-size: 1rem;
   font-weight: 600;
   z-index: 10;
 }
 
 .profile {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   position: relative;
   z-index: 9;
@@ -86,14 +96,20 @@
   position: absolute;
   top: 100%;
   transform: translateY(40%);
-  left: 0;
-  width: 250px;
+  left: -650%;
+  width: 300px;
   z-index: 10;
   padding: 20px;
   background: var(--card-bg-01);
   line-height: 30px;
   display: none;
   font-weight: 500;
+  font-size: 22px;
+}
+
+.nav__icons .profile .profile__actions a {
+  font-weight: 500;
+  font-size: 22px;
 }
 
 .profile__actions-button {
@@ -102,7 +118,7 @@
   align-items: start;
 }
 
-.show__profileActions{
+.show__profileActions {
   display: block !important;
 }
 

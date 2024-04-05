@@ -1,13 +1,15 @@
 /* google fonts */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 /*  css variables */
 :root {
   --card-bg-01: #fdefe6;
   --card-bg-02: #d6e5fb;
   --card-bg-03: #ceebe9;
   --card-bg-04: #e2f2b2;
-  --primary-color: #0a1d37;
+  --primary-color: #000;
+  --secondary-color: #fff;
   --hero-bg: #d6e5fb;
   --heading-fontSize: 2rem;
   --small-text-color: #999;
@@ -21,8 +23,15 @@
   box-sizing: border-box;
 }
 
-body {
+/* body {
   font-family: "Montserrat", sans-serif;
+} */
+
+
+body {
+   font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 h1,
@@ -63,13 +72,26 @@ section {
   padding: 60px 0px;
 }
 
-.section__title{
+.wrap {
+  width: 98%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.section__title {
   color: var(--primary-color);
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.row {
+  --bs-gutter-x: 0;
+  --bs-gutter-y: 0;
 }
 
 @media screen and (max-width: 768px) {
-  section{
+  section {
     padding: 40px 0;
   }
 }

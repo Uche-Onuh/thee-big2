@@ -86,8 +86,8 @@ const Shop = () => {
       <CommonSection title="Products" />
 
       <section>
-        <Container>
-          <Row>
+        <div className="wrap">
+          <Row className="action__row">
             <Col lg="3" md="6">
               <div className="filter__widget">
                 <select onChange={handleFilter}>
@@ -122,11 +122,11 @@ const Shop = () => {
               </div>
             </Col>
           </Row>
-        </Container>
+        </div>
       </section>
 
       <section>
-        <Container>
+        <div className="wrap">
           <Row>
             {loading ? (
               <CardSkeleton cards={20} />
@@ -136,7 +136,7 @@ const Shop = () => {
               <ProductsPageList data={productPerPage} />
             )}
           </Row>
-        </Container>
+        </div>
       </section>
 
       <section>

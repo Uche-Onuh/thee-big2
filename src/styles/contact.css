@@ -1,0 +1,5 @@
+.contact__form .form__group input, .contact__form .form__group textarea {
+  border: 1px solid var(--card-bg-02);
+  padding: 10px;
+  font-size: 18px;
+}

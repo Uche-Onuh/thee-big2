@@ -81,13 +81,13 @@ const Checkout = () => {
     <Helmet title="Checkout">
       <CommonSection title="Checkout" />
       <section>
-        <Container>
+        <div className="wrap">
           {loading ? (
             <LoadingSpinner />
           ) : (
             <Row>
               <Col lg="8">
-                <h6 className="mb-4 fw-bold">Billing Information</h6>
+                <h6 className="mb-4 fw-bold fs-1">Billing Information</h6>
                 <Form className="billing__form">
                   <FormGroup className="form__group">
                     <input
@@ -183,7 +183,7 @@ const Checkout = () => {
                     <span>NGN {Intl.NumberFormat().format(totalAmount)}</span>
                   </h4>
                   <button
-                    className="shop__btn order__btn auth__btn w-100"
+                    className="shop__btn order__btn auth__btn w-100 cart__shop-btn"
                     onClick={sendOrder}
                   >
                     Place Order
@@ -192,7 +192,7 @@ const Checkout = () => {
               </Col>
             </Row>
           )}
-        </Container>
+        </div>
       </section>
     </Helmet>
   );

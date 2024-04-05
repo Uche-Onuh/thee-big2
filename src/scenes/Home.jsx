@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Helmet from "../components/Helmet/Helmet";
-import { Container, Row, Col } from "reactstrap";
+import { Row, Col } from "reactstrap";
 import { hero, counter } from "../assets/images";
 import "../styles/home.css";
 import { useNavigate } from "react-router-dom";
-import Services from "../components/Services/Services";
 import ProductList from "../components/UI/ProductList";
 import Clock from "../components/UI/Clock";
 import { motion } from "framer-motion";
@@ -42,47 +41,30 @@ const Home = () => {
     setWireless(filteredWireless);
   }, [products]);
 
-  const year = new Date().getFullYear();
   const navigate = useNavigate();
   return (
-    <Helmet title="Home">
+    <Helmet title="Elevate Your style">
       <section className="hero__section">
-        <Container>
-          <Row>
-            <Col lg="6" md="6">
-              <div className="hero__content">
-                <p className="hero__subtitle">Trending Products in {year}</p>
-                <h2>Elevate Your Style with <br/> T H E E B I G </h2>
-                <p>
-                  Explore a world of fashion where comfort meets elegance. Our
-                  handcrafted clothing and selection of quality footwears redefine your wardrobe
-                  essentials with a touch of sophistication.
-                </p>
-                <motion.button
-                  whileTap={{ scale: 1.1 }}
-                  className="shop__btn"
-                  onClick={() => navigate("/shop")}
-                >
-                  SHOP NOW
-                </motion.button>
-              </div>
-            </Col>
-
-            <Col lg="6" md="6">
-              <div className="hero__img">
-                <img src={hero} alt="hero" />
-              </div>
-            </Col>
-          </Row>
-        </Container>
+        <Row className="hero">
+          <Col lg="12" md="12">
+            <div className="hero__content">
+              <h1>Elevate Your Style</h1>
+              <motion.button
+                whileTap={{ scale: 1.1 }}
+                className="shop__btn"
+                onClick={() => navigate("/shop")}
+              >
+                SHOP NOW
+              </motion.button>
+            </div>
+          </Col>
+        </Row>
       </section>
 
-      <Services />
-
       <section className="trending__products">
-        <Container>
+        <div className="wrap">
           <Row>
-            <Col lg="12" className="text-center">
+            <Col lg="12" className="text-left">
               <h2 className="section__title">Trending Products</h2>
             </Col>
             {loading ? (
@@ -91,13 +73,42 @@ const Home = () => {
               <ProductList data={product} size={8} currentPage={1} />
             )}
           </Row>
-        </Container>
+        </div>
+      </section>
+
+      <section>
+        <Row className="cta">
+          <Col lg="6" className="bespoke">
+            <div className="bespoke__content">
+              <h1>Order Custom Made Wears</h1>
+              <motion.button
+                whileTap={{ scale: 1.1 }}
+                className="shop__btn cta__btn"
+                onClick={() => navigate("/contact")}
+              >
+                CONTACT US
+              </motion.button>
+            </div>
+          </Col>
+          <Col lg="6" className="shop__now">
+            <div className="shop__now-content">
+              <h1>Browse Our Catalogue</h1>
+              <motion.button
+                whileTap={{ scale: 1.1 }}
+                className="shop__btn cta__btn"
+                onClick={() => navigate("/shop")}
+              >
+                SHOP NOW
+              </motion.button>
+            </div>
+          </Col>
+        </Row>
       </section>
 
       <section className="best__selling">
-        <Container>
+        <div className="wrap">
           <Row>
-            <Col lg="12" className="text-center">
+            <Col lg="12" className="text-left">
               <h2 className="section__title">Best Selling</h2>
             </Col>
             {loading ? (
@@ -106,42 +117,40 @@ const Home = () => {
               <ProductList data={bestSelling} size={8} currentPage={1} />
             )}
           </Row>
-        </Container>
+        </div>
       </section>
 
-      <section className="timer__count">
-        <Container>
-          <Row>
-            <Col lg="6" md="12" className="count__down-col">
-              <div className="clock__top-content">
-                <h4 className="text-white fs-6 mb-2">Limited Time Offer</h4>
-                <h3 className="text-white fs-5 mb-3">Quality Product</h3>
-              </div>
+      {/* <section className="timer__count">
+        <Row>
+          <Col lg="6" md="12" className="count__down-col">
+            <div className="clock__top-content">
+              <h4 className="text-white fs-6 mb-2">Limited Time Offer</h4>
+              <h3 className="text-white fs-5 mb-3">Quality Product</h3>
+            </div>
 
-              <Clock />
+            <Clock />
 
-              <motion.button
-                whileTap={{ scale: 1.1 }}
-                className="shop__btn store__btn"
-                onClick={() => {
-                  navigate("/shop");
-                }}
-              >
-                Visit Store
-              </motion.button>
-            </Col>
+            <motion.button
+              whileTap={{ scale: 1.1 }}
+              className="shop__btn store__btn"
+              onClick={() => {
+                navigate("/shop");
+              }}
+            >
+              Visit Store
+            </motion.button>
+          </Col>
 
-            <Col lg="6" md="12" className="text-end counter__img">
-              <img src={counter} alt="counter " />
-            </Col>
-          </Row>
-        </Container>
-      </section>
+          <Col lg="6" md="12" className="text-end counter__img">
+            <img src={counter} alt="counter " />
+          </Col>
+        </Row>
+      </section> */}
 
       <section className="new__arrival">
-        <Container>
+        <div className="wrap">
           <Row>
-            <Col lg="12" className="text-center">
+            <Col lg="12" className="text-left">
               <h2 className="section__title" md="2">
                 New Arrivals
               </h2>
@@ -157,7 +166,7 @@ const Home = () => {
               <ProductList data={wireless} size={8} currentPage={1} />
             )}
           </Row>
-        </Container>
+        </div>
       </section>
     </Helmet>
   );

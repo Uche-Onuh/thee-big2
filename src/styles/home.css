@@ -1,21 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap");
+
 .hero__section {
-  background: var(--hero-bg);
+  /* background: var(--hero-bg); */
+  background: url("../assets/images/hero1.jpg") center no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
 }
 
-.hero__content h2 {
-  color: var(--primary-col);
-  font-size: 2.5rem;
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hero__content h1 {
+  font-family: "Bodoni Moda", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  color: var(--secondary-color);
+  font-size: 9rem;
   font-weight: 600;
   margin: 20px 0px;
-}
-
-.hero__content p {
-  color: var(--primary-col);
-  line-height: 28px;
-}
-
-.hero__content p:nth-child(1) {
-  font-weight: 500;
+  text-align: center;
 }
 
 .shop__btn {
@@ -27,16 +40,12 @@
   color: #fff;
   cursor: pointer;
   font-size: 1rem;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .shop__btn:hover {
   background: #fff;
   color: var(--primary-color);
-}
-
-.hero__content {
-  padding-top: 45px;
 }
 
 .timer__count {
@@ -60,9 +69,40 @@
   color: var(--primary-color);
 }
 
+.cta h1 {
+  font-size: 5rem;
+}
+
+.bespoke {
+  background: url("../assets/images/bespoke.jpg") no-repeat center;
+  background-size: cover;
+  height: 90vh;
+  position: relative;
+}
+
+.bespoke__content,
+.shop__now-content {
+  position: absolute;
+  top: 45%;
+  left: 15%;
+  color: var(--secondary-color);
+}
+
+.cta__btn {
+  font-size: 28px;
+  border-radius: 20px;
+}
+
+.shop__now {
+  background: url("../assets/images/shop.jpg") no-repeat center;
+  background-size: cover;
+  position: relative;
+  height: 90vh;
+}
+
 @media screen and (max-width: 992px) {
-  .hero__content h2 {
-    font-size: 2rem;
+  .hero__content h1 {
+    font-size: 3rem;
   }
 
   .section__title {

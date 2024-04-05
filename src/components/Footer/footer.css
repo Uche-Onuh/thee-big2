@@ -5,8 +5,10 @@
 }
 
 .footer__text {
-  line-height: 20px;
+  font-size: 25px;
+  line-height: 30px;
   color: #ffffffbb;
+  max-width: 80%;
 }
 
 .footer__quick-links ul li {
@@ -15,38 +17,43 @@
 
 .footer__quick-links ul li a {
   color: #ffffffbb;
+  font-size: 1.3rem;
 }
 
 .quick_links-title {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 1.7rem;
 }
 
 .footer__contact li,
 .footer__contact li p {
   color: #ffffffbb;
+  font-size: 1.3rem;
 }
 
 .footer__contact li span {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 .footer__contact li p {
-  font-size: 0.9rem;
+  font-size: 1.3rem;
+}
+
+.socials{
+  margin-top: 70px;
 }
 
 .footer__social-media {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-top: 40px;
-  gap: 20px;
+  justify-content: flex-start;
+  gap: 30px;
 }
 
 .footer__social-media a i {
   color: var(--primary-color);
-  font-size: 20px;
+  font-size: 30px;
   cursor: pointer;
   background: #fff;
   border-radius: 50%;
@@ -60,9 +67,9 @@
 
 .footer__copyright {
   color: #ffffffbb;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   margin-top: 10px;
-  text-align: center;
+  text-align: right;
 }
 
 .footer__copyright a {

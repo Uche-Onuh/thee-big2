@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import Helmet from "../components/Helmet/Helmet";
-import { Container, Row, Col, Form, FormGroup } from "reactstrap";
+import { Row, Col, Form, FormGroup } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/login.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -8,6 +8,7 @@ import { auth, db } from "../firebase.config";
 import { doc, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
+import CommonSection from "../components/UI/CommonSection";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -62,8 +63,10 @@ const Login = () => {
 
   return (
     <Helmet title="Login">
+      <CommonSection title="Login" />
+
       <section>
-        <Container>
+        <div className="wrap">
           <Row>
             {loading ? (
               <Col lg="12" className="text-center">
@@ -71,8 +74,6 @@ const Login = () => {
               </Col>
             ) : (
               <Col lg="6" className="m-auto text-center">
-                <h3 className="fw-bold mb-4">Login</h3>
-
                 <Form className="auth__form" onSubmit={signin}>
                   <FormGroup className="form__group">
                     <input
@@ -112,7 +113,7 @@ const Login = () => {
               </Col>
             )}
           </Row>
-        </Container>
+        </div>
       </section>
     </Helmet>
   );

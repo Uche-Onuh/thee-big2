@@ -3,6 +3,11 @@
   position: relative;
 }
 
+.auth__form .form__group input{
+  padding: 20px;
+  font-size: 20px;
+}
+
 .form__group span {
   position: absolute;
   left: 95%;
@@ -25,10 +30,15 @@
   background: #fff;
   color: var(--primary-color);
   font-weight: 600;
+  font-size: 20px;
+  width: 300px;
+  padding: 15px 0;
 }
 
 .auth__form p {
   margin-top: 30px;
+  font-size: 20px;
+
 }
 
 .auth__form p a {
