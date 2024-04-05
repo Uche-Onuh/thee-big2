@@ -10,7 +10,7 @@ const Clock = () => {
   let interval;
 
   const countDown = () => {
-    const destination = new Date("11-12-2023").getTime();
+    const destination = new Date("11-12-2024").getTime();
 
     interval = setInterval(() => {
       const now = new Date().getTime();
@@ -38,32 +38,32 @@ const Clock = () => {
   }, [interval]);
 
   return (
-    <div className="clock__wrapper d-flex align-items-center gap-3">
-      <div className="clock__data d-flex align-items-center gap-3">
+    <div className="clock__wrapper d-flex align-items-center gap-5">
+      <div className="clock__data d-flex align-items-center gap-5">
         <div className="text-center">
-          <h1 className="text-white fs-3 mb-2">{days}</h1>
-          <h5 className="text-white fs-6">Days</h5>
+          <h1 className="red ">{days}</h1>
+          <h5 className="red ">Days</h5>
         </div>
-        <span className="text-white fs-3">:</span>
+        <span className="text-white fs-1">:</span>
       </div>
-      <div className="clock__data d-flex align-items-center gap-3">
+      <div className="clock__data d-flex align-items-center gap-5">
         <div className="text-center">
-          <h1 className="text-white fs-3 mb-2">{hours}</h1>
-          <h5 className="text-white fs-6">Hours</h5>
+          <h1 className="red  mb-2">{hours}</h1>
+          <h5 className="red">Hours</h5>
         </div>
-        <span className="text-white fs-3">:</span>
+        <span className="text-white fs-1">:</span>
       </div>
-      <div className="clock__data d-flex align-items-center gap-3">
+      <div className="clock__data d-flex align-items-center gap-5">
         <div className="text-center">
-          <h1 className="text-white fs-3 mb-2">{minutes}</h1>
-          <h5 className="text-white fs-6">Minutes</h5>
+          <h1 className="red ">{minutes}</h1>
+          <h5 className="red ">Minutes</h5>
         </div>
-        <span className="text-white fs-3">:</span>
+        <span className="text-white fs-1">:</span>
       </div>
-      <div className="clock__data d-flex align-items-center gap-3">
+      <div className="clock__data d-flex align-items-center gap-5">
         <div className="text-center">
-          <h1 className="text-white fs-3 mb-2">{seconds}</h1>
-          <h5 className="text-white fs-6">Seconds</h5>
+          <h1 className="red ">{seconds}</h1>
+          <h5 className="red">Seconds</h5>
         </div>
       </div>
     </div>

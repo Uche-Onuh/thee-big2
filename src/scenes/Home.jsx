@@ -61,16 +61,23 @@ const Home = () => {
         </Row>
       </section>
 
-      <section className="trending__products">
+      <section className="new__arrival">
         <div className="wrap">
           <Row>
             <Col lg="12" className="text-left">
-              <h2 className="section__title">Trending Products</h2>
+              <h2 className="section__title" md="2">
+                New Arrivals
+              </h2>
             </Col>
             {loading ? (
               <CardSkeleton cards={4} />
             ) : (
-              <ProductList data={product} size={8} currentPage={1} />
+              <ProductList data={newArrival} size={8} currentPage={1} />
+            )}
+            {loading ? (
+              <CardSkeleton cards={4} />
+            ) : (
+              <ProductList data={wireless} size={8} currentPage={1} />
             )}
           </Row>
         </div>
@@ -120,50 +127,44 @@ const Home = () => {
         </div>
       </section>
 
-      {/* <section className="timer__count">
-        <Row>
-          <Col lg="6" md="12" className="count__down-col">
-            <div className="clock__top-content">
-              <h4 className="text-white fs-6 mb-2">Limited Time Offer</h4>
-              <h3 className="text-white fs-5 mb-3">Quality Product</h3>
-            </div>
+      <section className="timer__count">
+        <div className="overlay"></div>
+        <div className="wrap">
+          <Row className="timer__content">
+            <Col lg="6" md="12" className="count__down-col">
+              <div className="clock__top-content">
+                <h4 className="text-white  mb-2 ">Holiday Sales</h4>
+                <h3 className="text-white  mb-3">Limited Time offer</h3>
+              </div>
 
-            <Clock />
+              <Clock />
+            </Col>
 
-            <motion.button
-              whileTap={{ scale: 1.1 }}
-              className="shop__btn store__btn"
-              onClick={() => {
-                navigate("/shop");
-              }}
-            >
-              Visit Store
-            </motion.button>
-          </Col>
+            <Col lg="6" md="12" className="text-center counter__img">
+              <motion.button
+                whileTap={{ scale: 1.1 }}
+                className="shop__btn store__btn"
+                onClick={() => {
+                  navigate("/shop");
+                }}
+              >
+                Visit Store
+              </motion.button>
+            </Col>
+          </Row>
+        </div>
+      </section>
 
-          <Col lg="6" md="12" className="text-end counter__img">
-            <img src={counter} alt="counter " />
-          </Col>
-        </Row>
-      </section> */}
-
-      <section className="new__arrival">
+      <section className="trending__products">
         <div className="wrap">
           <Row>
             <Col lg="12" className="text-left">
-              <h2 className="section__title" md="2">
-                New Arrivals
-              </h2>
+              <h2 className="section__title">Trending Products</h2>
             </Col>
             {loading ? (
               <CardSkeleton cards={4} />
             ) : (
-              <ProductList data={newArrival} size={8} currentPage={1} />
-            )}
-            {loading ? (
-              <CardSkeleton cards={4} />
-            ) : (
-              <ProductList data={wireless} size={8} currentPage={1} />
+              <ProductList data={product} size={8} currentPage={1} />
             )}
           </Row>
         </div>

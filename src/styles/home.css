@@ -49,19 +49,45 @@
 }
 
 .timer__count {
-  background: var(--primary-color);
-  height: 300px;
+  background-image: url("../assets/images/timer.jpg");
+  min-height: 50vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
 
-.timer__count img {
-  width: 70% !important;
-  height: 70% !important;
-  object-fit: contain;
+.overlay {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 50vh;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.timer__content {
+  z-index: 100;
+  position: relative;
+  align-items: center;
+  padding: 70px;
+}
+
+.clock__top-content h4 {
+  font-size: 3rem;
+}
+
+.clock__top-content h3 {
+  font-size: 4.5rem;
 }
 
 .store__btn {
   background: #fff;
   color: #000;
+  width: 500px;
+  padding: 30px;
   font-weight: 600;
 }
 

@@ -1,3 +1,15 @@
+.clock__data h1 {
+  font-size: 8rem;
+}
+
+.clock__data h5 {
+  font-size: 1.2rem;
+}
+
+.red{
+  color: #ff0000;
+}
+
 @media screen and (max-width: 768px) {
   .clock__wrapper {
     justify-content: center;
