@@ -1,7 +1,13 @@
+.checkout__container {
+  --bs-gutter-x: 40px;
+  --bs-gutter-y: 40px;
+}
+
 .billing__form .form__group input {
   border: 1px solid var(--card-bg-02);
   padding: 10px;
-  font-size: 18px;
+  font-size: 25px;
+  width: 85%;
 }
 
 .checkout__cart {
@@ -20,17 +26,25 @@ h4 {
 
 .checkout__cart h6 {
   margin-bottom: 20px;
+  font-size: 18px;
 }
 
 .checkout__cart h4 {
   border-top: 1px solid rgba(221, 221, 221, 0.253);
   padding-top: 20px;
+  font-size: 20px;
+}
+
+.checkout__cart span{
+  font-size: 25px;
 }
 
 .order__btn {
   background: #fff;
   color: var(--primary-color);
   font-weight: 600;
+  font-size: 25px;
+
 }
 
 .order__btn:hover {

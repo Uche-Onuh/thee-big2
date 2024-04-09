@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Helmet from "../components/Helmet/Helmet";
 import { Row, Col } from "reactstrap";
-import { hero, counter } from "../assets/images";
 import "../styles/home.css";
 import { useNavigate } from "react-router-dom";
 import ProductList from "../components/UI/ProductList";

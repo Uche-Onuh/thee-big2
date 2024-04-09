@@ -145,7 +145,7 @@ const Shop = () => {
             <Col lg="12">
               <div className="pagination">
                 <button
-                  className="shop__btn"
+                  className="shop__btn pagination__btn"
                   onClick={goToPrev}
                   disabled={!canGoPrev}
                 >
@@ -155,7 +155,7 @@ const Shop = () => {
                   {currentPage} of {pages}
                 </p>
                 <button
-                  className="shop__btn"
+                  className="shop__btn pagination__btn"
                   onClick={goToNext}
                   disabled={!canGoNext}
                 >

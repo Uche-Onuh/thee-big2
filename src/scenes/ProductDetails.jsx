@@ -10,6 +10,7 @@ import { cartActions } from "../redux/slices/cartSlice";
 import { toast } from "react-toastify";
 import ProductList from "../components/UI/ProductList";
 import DetailSkeleton from "../components/UI/DetailSkeleton";
+import { formatAmount } from "../constants/helperFunction";
 
 import { db } from "../firebase.config";
 import { doc, getDoc } from "firebase/firestore";
@@ -18,6 +19,7 @@ import useGetdata from "../hooks/useGetdata";
 const ProductDetails = () => {
   const [product, setProduct] = useState({});
   const [tab, setTab] = useState("description");
+  const [selectedSize, setSelectedSize] = useState("Select Size");
   const [rating, setRating] = useState(null);
   const [loading, setLoading] = useState(true);
   const reviewUser = useRef("");
@@ -29,6 +31,11 @@ const ProductDetails = () => {
   const { data: products } = useGetdata("products");
 
   const docRef = doc(db, "products", id);
+
+  // Function to handle the change in the select element
+  const handleSizeChange = (event) => {
+    setSelectedSize(event.target.value);
+  };
 
   useEffect(() => {
     try {
@@ -84,6 +91,7 @@ const ProductDetails = () => {
         image: imgUrl,
         productName: title,
         price,
+        itemSize: selectedSize,
       })
     );
 
@@ -133,19 +141,37 @@ const ProductDetails = () => {
 
                     <div className="d-flex align-items-center gap-5">
                       <span className="product__price">
-                        NGN {price.toLocaleString()}
+                        NGN {formatAmount(price)}
                       </span>
                       <span>Category: {category.toUpperCase()}</span>
                     </div>
                     <p className="mt-3">{shortDescription}</p>
 
-                    <motion.button
-                      whileTap={{ scale: 1.2 }}
-                      className="shop__btn"
-                      onClick={addToCart}
-                    >
-                      Add to Cart
-                    </motion.button>
+                    <div className="d-flex align-items-end gap-5">
+                      <motion.button
+                        whileTap={{ scale: 1.2 }}
+                        className="shop__btn"
+                        onClick={addToCart}
+                      >
+                        Add to Cart
+                      </motion.button>
+
+                      <select
+                        name="size"
+                        id="size"
+                        className="size"
+                        value={selectedSize}
+                        onChange={handleSizeChange}
+                      >
+                        <option disabled>
+                          Select Size
+                        </option>
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
+                        <option value="xl">XL</option>
+                        <option value="xxl">XXL</option>
+                      </select>
+                    </div>
                   </div>
                 </Col>
               </Row>

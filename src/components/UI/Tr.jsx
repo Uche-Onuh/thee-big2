@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { formatAmount } from "../../constants/helperFunction";
 
 import { cartActions } from "../../redux/slices/cartSlice";
 import { useDispatch } from "react-redux";
@@ -19,11 +20,11 @@ const Tr = ({ item }) => {
     dispatch(cartActions.decreaseItem(item.id));
   };
 
-  const updateItemSize = (event) => {
-    const newSize = event.target.value;
-    // Dispatch an action to update the size in the cart
-    dispatch(cartActions.updateItemSize({ itemId: item.id, newSize }));
-  };
+  // const updateItemSize = (event) => {
+  //   const newSize = event.target.value;
+  //   // Dispatch an action to update the size in the cart
+  //   dispatch(cartActions.updateItemSize({ itemId: item.id, newSize }));
+  // };
 
   return (
     <tr>
@@ -33,15 +34,16 @@ const Tr = ({ item }) => {
       <td>{item.productName}</td>
       <td>
         {" "}
-        <input
+        {/* <input
           type="text"
           value={item.itemSize}
           onChange={updateItemSize}
           aria-label={`Update size of ${item.productName}`}
           style={{ width: "100px", textTransform: "uppercase" }}
-        />
+        /> */}
+        <p>{item.itemSize}</p>
       </td>
-      <td>NGN {item.price.toLocaleString()}</td>
+      <td>NGN {formatAmount(item.price)}</td>
       <td>
         <div className="inline align-items-center gap-2">
           {item.quantity}pc

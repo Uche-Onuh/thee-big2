@@ -51,7 +51,6 @@
 .timer__count {
   background-image: url("../assets/images/timer.jpg");
   min-height: 50vh;
-  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

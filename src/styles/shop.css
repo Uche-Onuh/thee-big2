@@ -1,5 +1,5 @@
-.action__row{
-   --bs-gutter-x: 20px;
+.action__row {
+  --bs-gutter-x: 20px;
 }
 
 .filter__widget select {
@@ -9,6 +9,7 @@
   border-radius: 5px;
   background: var(--primary-color);
   color: #fff;
+  font-size: 2rem;
 }
 
 .filter__widget select:focus {
@@ -16,7 +17,7 @@
 }
 
 .filter__widget select option {
-  font-size: 0.9rem;
+  font-size: 2rem;
 }
 
 .search__box {
@@ -26,8 +27,7 @@
   justify-content: space-between;
   border: 1px solid var(--primary-color);
   border-radius: 5px;
-  padding-right: 12px;
-  padding-left: 2px;
+  padding: 4px 12px 4px 2px;
   cursor: pointer;
 }
 
@@ -36,6 +36,10 @@
   border: none;
   outline: none;
   padding: 8px 10px;
+  font-size: 25px;
+}
+.search__box input::placeholder {
+  font-size: 25px;
 }
 
 .search__box span {
@@ -51,6 +55,11 @@
 
 .pagination p {
   font-weight: 600;
+  font-size: 30px;
+}
+
+.pagination__btn{
+  font-size: 25px;
 }
 
 @media only screen and (max-width: 768px) {

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Form, FormGroup } from "reactstrap";
+import { Row, Col, Form, FormGroup } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import "../styles/checkout.css";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { formatAmount } from "../constants/helperFunction";
 
 import { useDispatch } from "react-redux";
 import { cartActions } from "../redux/slices/cartSlice";
@@ -85,7 +86,7 @@ const Checkout = () => {
           {loading ? (
             <LoadingSpinner />
           ) : (
-            <Row>
+            <Row className="checkout__container">
               <Col lg="8">
                 <h6 className="mb-4 fw-bold fs-1">Billing Information</h6>
                 <Form className="billing__form">
@@ -167,8 +168,7 @@ const Checkout = () => {
                     Total Qty : <span>{totalQty} items</span>
                   </h6>
                   <h6>
-                    Subtotal :
-                    <span>NGN {Intl.NumberFormat().format(totalAmount)}</span>
+                    Subtotal :<span>NGN {formatAmount(totalAmount)}</span>
                   </h6>
                   <h6>
                     <span>
@@ -179,11 +179,10 @@ const Checkout = () => {
                   </h6>
                   <h6></h6>
                   <h4>
-                    Total Cost :{" "}
-                    <span>NGN {Intl.NumberFormat().format(totalAmount)}</span>
+                    Total Cost : <span>NGN {formatAmount(totalAmount)}</span>
                   </h4>
                   <button
-                    className="shop__btn order__btn auth__btn w-100 cart__shop-btn"
+                    className="order__btn shop__btn  auth__btn w-100 cart__shop-btn"
                     onClick={sendOrder}
                   >
                     Place Order

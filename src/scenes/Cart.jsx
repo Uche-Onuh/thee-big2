@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import "../styles/cart.css";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
-import { Container, Row, Col } from "reactstrap";
+import { Row, Col } from "reactstrap";
 import Tr from "../components/UI/Tr";
 import { useNavigate } from "react-router-dom";
+import { formatAmount } from "../constants/helperFunction";
 
 import { useSelector } from "react-redux";
 
@@ -53,7 +54,7 @@ const Cart = () => {
                 <h6 className="d-flex align-items-center gap-3">
                   Subtotal:
                   <span className="fs-1 fw-bold">
-                    NGN {totalAmount.toLocaleString()}
+                    NGN {formatAmount(totalAmount)}
                   </span>
                 </h6>
               </div>
